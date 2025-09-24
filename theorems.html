@@ -1,0 +1,48 @@
+
+        <!DOCTYPE HMTL>
+        <head>
+            <title>Theorems</title>
+            <link rel="stylesheet" type="text/css" href="tablestyle.css">
+            <script src="highlight-ref.js" defer></script>
+        </head>
+        <body>
+            <table>
+                <thead><tr><th>Id</th><th>Statement</th><th>Proof</th><th>Names</th></tr></thead>
+                <tbody>
+                    <tr id = 0  class = "named axiom" ><td>0</td><td>→𝜑→𝜓𝜑</td><td>Axiom</td><td>ax-1</td></tr>
+<tr id = 1  class = "named axiom" ><td>1</td><td>→→𝜑→𝜓𝜒→→𝜑𝜓→𝜑𝜒</td><td>Axiom</td><td>ax-2</td></tr>
+<tr id = 2 sub-target = "0" class = "subs" ><td>2</td><td>→𝜑→𝜑𝜑</td><td>Subs [𝜓↗𝜑] into 0</td><td></td></tr>
+<tr id = 3 sub-target = "0" class = "subs" ><td>3</td><td>→𝜑→→𝜑𝜑𝜑</td><td>Subs [𝜓↗→𝜑𝜑] into 0</td><td></td></tr>
+<tr id = 4 sub-target = "1" class = "subs" ><td>4</td><td>→→𝜑→→𝜑𝜑𝜑→→𝜑→𝜑𝜑→𝜑𝜑</td><td>Subs [𝜓↗→𝜑𝜑, 𝜒↗𝜑] into 1</td><td></td></tr>
+<tr id = 5 antecedent = "3" mp-target = "4" class = "mp" ><td>5</td><td>→→𝜑→𝜑𝜑→𝜑𝜑</td><td>Modus ponens 3, 4</td><td></td></tr>
+<tr id = 6 antecedent = "2" mp-target = "5" class = "named mp" ><td>6</td><td>→𝜑𝜑</td><td>Modus ponens 2, 5</td><td>id</td></tr>
+<tr id = 7 sub-target = "6" class = "subs" ><td>7</td><td>→𝜓𝜓</td><td>Subs [𝜑↗𝜓] into 6</td><td></td></tr>
+<tr id = 8 sub-target = "0" class = "subs" ><td>8</td><td>→→𝜓𝜓→𝜑→𝜓𝜓</td><td>Subs [𝜓↗𝜑, 𝜑↗→𝜓𝜓] into 0</td><td></td></tr>
+<tr id = 9 antecedent = "7" mp-target = "8" class = "named mp" ><td>9</td><td>→𝜑→𝜓𝜓</td><td>Modus ponens 7, 8</td><td>idd</td></tr>
+<tr id = 10 sub-target = "0" class = "subs" ><td>10</td><td>→𝜑→𝜃𝜑</td><td>Subs [𝜓↗𝜃] into 0</td><td></td></tr>
+<tr id = 11 sub-target = "0" class = "subs" ><td>11</td><td>→→𝜑→𝜃𝜑→𝜑→𝜑→𝜃𝜑</td><td>Subs [𝜓↗𝜑, 𝜑↗→𝜑→𝜃𝜑] into 0</td><td></td></tr>
+<tr id = 12 antecedent = "10" mp-target = "11" class = "mp" ><td>12</td><td>→𝜑→𝜑→𝜃𝜑</td><td>Modus ponens 10, 11</td><td></td></tr>
+<tr id = 13 sub-target = "1" class = "subs" ><td>13</td><td>→→𝜑→𝜑→𝜃𝜑→→𝜑𝜑→𝜑→𝜃𝜑</td><td>Subs [𝜓↗𝜑, 𝜒↗→𝜃𝜑] into 1</td><td></td></tr>
+<tr id = 14 antecedent = "12" mp-target = "13" class = "mp" ><td>14</td><td>→→𝜑𝜑→𝜑→𝜃𝜑</td><td>Modus ponens 12, 13</td><td></td></tr>
+<tr id = 15 sub-target = "0" class = "subs" ><td>15</td><td>→→𝜃𝜑→𝜒→𝜃𝜑</td><td>Subs [𝜑↗→𝜃𝜑, 𝜓↗𝜒] into 0</td><td></td></tr>
+<tr id = 16 sub-target = "0" class = "subs" ><td>16</td><td>→→→𝜃𝜑→𝜒→𝜃𝜑→𝜑→→𝜃𝜑→𝜒→𝜃𝜑</td><td>Subs [𝜓↗𝜑, 𝜑↗→→𝜃𝜑→𝜒→𝜃𝜑] into 0</td><td></td></tr>
+<tr id = 17 antecedent = "15" mp-target = "16" class = "mp" ><td>17</td><td>→𝜑→→𝜃𝜑→𝜒→𝜃𝜑</td><td>Modus ponens 15, 16</td><td></td></tr>
+<tr id = 18 sub-target = "1" class = "subs" ><td>18</td><td>→→𝜑→→𝜃𝜑→𝜒→𝜃𝜑→→𝜑→𝜃𝜑→𝜑→𝜒→𝜃𝜑</td><td>Subs [𝜓↗→𝜃𝜑, 𝜒↗→𝜒→𝜃𝜑] into 1</td><td></td></tr>
+<tr id = 19 antecedent = "17" mp-target = "18" class = "mp" ><td>19</td><td>→→𝜑→𝜃𝜑→𝜑→𝜒→𝜃𝜑</td><td>Modus ponens 17, 18</td><td></td></tr>
+<tr id = 20 antecedent = "10" mp-target = "19" class = "named mp" ><td>20</td><td>→𝜑→𝜒→𝜃𝜑</td><td>Modus ponens 10, 19</td><td>2ali</td></tr>
+<tr id = 21 sub-target = "6" class = "subs" ><td>21</td><td>→→𝜑𝜓→𝜑𝜓</td><td>Subs [𝜑↗→𝜑𝜓] into 6</td><td></td></tr>
+<tr id = 22 sub-target = "0" class = "subs" ><td>22</td><td>→𝜑→→𝜑𝜓𝜑</td><td>Subs [𝜓↗→𝜑𝜓] into 0</td><td></td></tr>
+<tr id = 23 sub-target = "0" class = "subs" ><td>23</td><td>→→𝜑→→𝜑𝜓𝜑→𝜑→𝜑→→𝜑𝜓𝜑</td><td>Subs [𝜓↗𝜑, 𝜑↗→𝜑→→𝜑𝜓𝜑] into 0</td><td></td></tr>
+<tr id = 24 antecedent = "22" mp-target = "23" class = "mp" ><td>24</td><td>→𝜑→𝜑→→𝜑𝜓𝜑</td><td>Modus ponens 22, 23</td><td></td></tr>
+<tr id = 25 sub-target = "1" class = "subs" ><td>25</td><td>→→𝜑→𝜑→→𝜑𝜓𝜑→→𝜑𝜑→𝜑→→𝜑𝜓𝜑</td><td>Subs [𝜓↗𝜑, 𝜒↗→→𝜑𝜓𝜑] into 1</td><td></td></tr>
+<tr id = 26 antecedent = "24" mp-target = "25" class = "mp" ><td>26</td><td>→→𝜑𝜑→𝜑→→𝜑𝜓𝜑</td><td>Modus ponens 24, 25</td><td></td></tr>
+<tr id = 27 sub-target = "1" class = "subs" ><td>27</td><td>→→→𝜑𝜓→𝜑𝜓→→→𝜑𝜓𝜑→→𝜑𝜓𝜓</td><td>Subs [𝜑↗→𝜑𝜓, 𝜓↗𝜑, 𝜒↗𝜓] into 1</td><td></td></tr>
+<tr id = 28 antecedent = "21" mp-target = "27" class = "mp" ><td>28</td><td>→→→𝜑𝜓𝜑→→𝜑𝜓𝜓</td><td>Modus ponens 21, 27</td><td></td></tr>
+<tr id = 29 sub-target = "0" class = "subs" ><td>29</td><td>→→→→𝜑𝜓𝜑→→𝜑𝜓𝜓→𝜑→→→𝜑𝜓𝜑→→𝜑𝜓𝜓</td><td>Subs [𝜓↗𝜑, 𝜑↗→→→𝜑𝜓𝜑→→𝜑𝜓𝜓] into 0</td><td></td></tr>
+<tr id = 30 antecedent = "28" mp-target = "29" class = "mp" ><td>30</td><td>→𝜑→→→𝜑𝜓𝜑→→𝜑𝜓𝜓</td><td>Modus ponens 28, 29</td><td></td></tr>
+<tr id = 31 sub-target = "1" class = "subs" ><td>31</td><td>→→𝜑→→→𝜑𝜓𝜑→→𝜑𝜓𝜓→→𝜑→→𝜑𝜓𝜑→𝜑→→𝜑𝜓𝜓</td><td>Subs [𝜓↗→→𝜑𝜓𝜑, 𝜒↗→→𝜑𝜓𝜓] into 1</td><td></td></tr>
+<tr id = 32 antecedent = "30" mp-target = "31" class = "mp" ><td>32</td><td>→→𝜑→→𝜑𝜓𝜑→𝜑→→𝜑𝜓𝜓</td><td>Modus ponens 30, 31</td><td></td></tr>
+<tr id = 33 antecedent = "22" mp-target = "32" class = "named mp" ><td>33</td><td>→𝜑→→𝜑𝜓𝜓</td><td>Modus ponens 22, 32</td><td>pl2.27</td></tr>
+                </tbody>
+            </table>
+        </body>
