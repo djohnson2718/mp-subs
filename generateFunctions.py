@@ -37,6 +37,9 @@ def getSteps(codeString):
             l.append('Z')
             i += 1
             continue
+        if codeString[i].isspace():
+            i += 1
+            continue
         bigdigits = []
         while codeString[i] in "UVWXY":
             bigdigits.append("UVWXY".index(codeString[i]) + 1)
@@ -99,7 +102,7 @@ def makeFunction(nVars, nHyp, refs, codeString, name, writer=print):
 import re
 pattern = re.compile(r"\$\{.*?\$\}|[\w\-\.]+\s\$p.*?\$\.", re.DOTALL)
 namePattern = re.compile(r"([\w\-\.]+)\s\$p\s\|-")
-codeStringPattern = re.compile(r"\$=\s*\((.*?)\)\s*([A-Z]+)\s*\$")
+codeStringPattern = re.compile(r"\$=\s*\((.*?)\)\s*([A-Z\s]+)\s\$\.")
 refsPattern = re.compile(r"\(\s([\sa-z0-9\-\.]+)\s\)")
 
 with open("set.mm") as f:
@@ -114,7 +117,7 @@ with open("TrueLines.py", "w") as tl:
     tl.write("from header import *\n\n")
     for s in l:
         count += 1
-        if count < 10:
+        if count < 8:
             continue
         print(s)
         
@@ -129,6 +132,7 @@ with open("TrueLines.py", "w") as tl:
                 nVars += 1
         for name, refs, codeString in zip(names, refeses, codestrings):
             if name in excludeNames or name.endswith("ALT"):
+                print("### Skipping: " + name)
                 continue
             if name == 'notnotrd':
                 nHyp -= 2 

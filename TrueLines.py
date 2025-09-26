@@ -1,5 +1,13 @@
 from header import *
 
+def R_mp2(ph, ps, ch, h1, h2, h3):
+    s9 = R_ax_mp(f"{ph}", f"→{ps}{ch}", h1, h3)
+    return R_ax_mp(f"{ps}", f"{ch}", h2, s9)
+
+def R_mp2b(ph, ps, ch, h1, h2, h3):
+    s6 = R_ax_mp(f"{ph}", f"{ps}", h1, h2)
+    return R_ax_mp(f"{ps}", f"{ch}", s6, h3)
+
 def R_a1i(ph, ps, h1):
     s7 = R_ax_1(f"{ph}", f"{ps}")
     return R_ax_mp(f"{ph}", f"→{ps}{ph}", h1, s7)
@@ -842,3 +850,226 @@ def R_impbi(ph, ps):
     s35 = R_ax_mp(f"¬→→↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}¬→¬→→{ph}{ps}¬→{ps}{ph}↔{ph}{ps}", f"→¬→→{ph}{ps}¬→{ps}{ph}↔{ph}{ps}", s31, s34)
     return R_expi(f"→{ph}{ps}", f"→{ps}{ph}", f"↔{ph}{ps}", s35)
 
+def R_impbii(ph, ps, h1, h2):
+    s13 = R_impbi(f"{ph}", f"{ps}")
+    return R_mp2(f"→{ph}{ps}", f"→{ps}{ph}", f"↔{ph}{ps}", h1, h2, s13)
+
+def R_impbidd(ph, ps, ch, th, h1, h2):
+    s15 = R_impbi(f"{ch}", f"{th}")
+    return R_syl6c(f"{ph}", f"{ps}", f"→{ch}{th}", f"→{th}{ch}", f"↔{ch}{th}", h1, h2, s15)
+
+def R_impbid21d(ph, ps, ch, th, h1, h2):
+    s15 = R_impbi(f"{ch}", f"{th}")
+    return R_syl2imc(f"{ps}", f"→{ch}{th}", f"{ph}", f"→{th}{ch}", f"↔{ch}{th}", h1, h2, s15)
+
+def R_impbid(ph, ps, ch, h1, h2):
+    s10 = R_impbid21d(f"{ph}", f"{ph}", f"{ps}", f"{ch}", h1, h2)
+    return R_pm2_43i(f"{ph}", f"↔{ps}{ch}", s10)
+
+@Theorem(2, "dfbi1")
+def R_dfbi1(ph, ps):
+    s28 = R_df_bi(f"{ph}", f"{ps}")
+    s34 = R_impbi(f"↔{ph}{ps}", f"¬→→{ph}{ps}¬→{ps}{ph}")
+    s35 = R_con3rr3(f"→↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}", f"→¬→→{ph}{ps}¬→{ps}{ph}↔{ph}{ps}", f"↔↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}", s34)
+    return R_mt3(f"↔↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}", f"→→↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}¬→¬→→{ph}{ps}¬→{ps}{ph}↔{ph}{ps}", s28, s35)
+
+@Theorem(2, "biimp")
+def R_biimp(ph, ps):
+    s31 = R_df_bi(f"{ph}", f"{ps}")
+    s34 = R_simplim(f"→↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}", f"¬→¬→→{ph}{ps}¬→{ps}{ph}↔{ph}{ps}")
+    s35 = R_ax_mp(f"¬→→↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}¬→¬→→{ph}{ps}¬→{ps}{ph}↔{ph}{ps}", f"→↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}", s31, s34)
+    s38 = R_simplim(f"→{ph}{ps}", f"¬→{ps}{ph}")
+    return R_syl(f"↔{ph}{ps}", f"¬→→{ph}{ps}¬→{ps}{ph}", f"→{ph}{ps}", s35, s38)
+
+def R_biimpi(ph, ps, h1):
+    s9 = R_biimp(f"{ph}", f"{ps}")
+    return R_ax_mp(f"↔{ph}{ps}", f"→{ph}{ps}", h1, s9)
+
+def R_sylbi(ph, ps, ch, h1, h2):
+    s6 = R_biimpi(f"{ph}", f"{ps}", h1)
+    return R_syl(f"{ph}", f"{ps}", f"{ch}", s6, h2)
+
+def R_sylib(ph, ps, ch, h1, h2):
+    s7 = R_biimpi(f"{ps}", f"{ch}", h2)
+    return R_syl(f"{ph}", f"{ps}", f"{ch}", h1, s7)
+
+def R_sylbb(ph, ps, ch, h1, h2):
+    s7 = R_biimpi(f"{ps}", f"{ch}", h2)
+    return R_sylbi(f"{ph}", f"{ps}", f"{ch}", h1, s7)
+
+@Theorem(2, "biimpr")
+def R_biimpr(ph, ps):
+    s17 = R_dfbi1(f"{ph}", f"{ps}")
+    s20 = R_simprim(f"→{ph}{ps}", f"→{ps}{ph}")
+    return R_sylbi(f"↔{ph}{ps}", f"¬→→{ph}{ps}¬→{ps}{ph}", f"→{ps}{ph}", s17, s20)
+
+@Theorem(2, "bicom1")
+def R_bicom1(ph, ps):
+    s7 = R_biimpr(f"{ph}", f"{ps}")
+    s10 = R_biimp(f"{ph}", f"{ps}")
+    return R_impbid(f"↔{ph}{ps}", f"{ps}", f"{ph}", s7, s10)
+
+@Theorem(2, "bicom")
+def R_bicom(ph, ps):
+    s8 = R_bicom1(f"{ph}", f"{ps}")
+    s11 = R_bicom1(f"{ps}", f"{ph}")
+    return R_impbii(f"↔{ph}{ps}", f"↔{ps}{ph}", s8, s11)
+
+def R_bicomd(ph, ps, ch, h1):
+    s10 = R_bicom(f"{ps}", f"{ch}")
+    return R_sylib(f"{ph}", f"↔{ps}{ch}", f"↔{ch}{ps}", h1, s10)
+
+def R_bicomi(ph, ps, h1):
+    s9 = R_bicom1(f"{ph}", f"{ps}")
+    return R_ax_mp(f"↔{ph}{ps}", f"↔{ps}{ph}", h1, s9)
+
+def R_impbid1(ph, ps, ch, h1, h2):
+    s9 = R_a1i(f"→{ch}{ps}", f"{ph}", h2)
+    return R_impbid(f"{ph}", f"{ps}", f"{ch}", h1, s9)
+
+def R_impbid2(ph, ps, ch, h1, h2):
+    s8 = R_impbid1(f"{ph}", f"{ch}", f"{ps}", h2, h1)
+    return R_bicomd(f"{ph}", f"{ch}", f"{ps}", s8)
+
+def R_impcon4bid(ph, ps, ch, h1, h2):
+    s8 = R_con4d(f"{ph}", f"{ps}", f"{ch}", h2)
+    return R_impbid(f"{ph}", f"{ps}", f"{ch}", h1, s8)
+
+def R_biimpri(ph, ps, h1):
+    s5 = R_bicomi(f"{ph}", f"{ps}", h1)
+    return R_biimpi(f"{ps}", f"{ph}", s5)
+
+def R_biimpd(ph, ps, ch, h1):
+    s10 = R_biimp(f"{ps}", f"{ch}")
+    return R_syl(f"{ph}", f"↔{ps}{ch}", f"→{ps}{ch}", h1, s10)
+
+def R_mpbi(ph, ps, h1, h2):
+    s6 = R_biimpi(f"{ph}", f"{ps}", h2)
+    return R_ax_mp(f"{ph}", f"{ps}", h1, s6)
+
+def R_mpbir(ph, ps, h1, h2):
+    s6 = R_biimpri(f"{ph}", f"{ps}", h2)
+    return R_ax_mp(f"{ps}", f"{ph}", h1, s6)
+
+def R_mpbid(ph, ps, ch, h1, h2):
+    s8 = R_biimpd(f"{ph}", f"{ps}", f"{ch}", h2)
+    return R_mpd(f"{ph}", f"{ps}", f"{ch}", h1, s8)
+
+def R_mpbii(ph, ps, ch, h1, h2):
+    s6 = R_a1i(f"{ps}", f"{ph}", h1)
+    return R_mpbid(f"{ph}", f"{ps}", f"{ch}", s6, h2)
+
+def R_sylibr(ph, ps, ch, h1, h2):
+    s7 = R_biimpri(f"{ch}", f"{ps}", h2)
+    return R_syl(f"{ph}", f"{ps}", f"{ch}", h1, s7)
+
+def R_sylbir(ph, ps, ch, h1, h2):
+    s6 = R_biimpri(f"{ps}", f"{ph}", h1)
+    return R_syl(f"{ph}", f"{ps}", f"{ch}", s6, h2)
+
+def R_sylbbr(ph, ps, ch, h1, h2):
+    s6 = R_biimpri(f"{ps}", f"{ch}", h2)
+    return R_sylibr(f"{ch}", f"{ps}", f"{ph}", s6, h1)
+
+def R_sylbb1(ph, ps, ch, h1, h2):
+    s6 = R_biimpri(f"{ph}", f"{ps}", h1)
+    return R_sylib(f"{ps}", f"{ph}", f"{ch}", s6, h2)
+
+def R_sylbb2(ph, ps, ch, h1, h2):
+    s7 = R_biimpri(f"{ch}", f"{ps}", h2)
+    return R_sylbi(f"{ph}", f"{ps}", f"{ch}", h1, s7)
+
+def R_sylibd(ph, ps, ch, th, h1, h2):
+    s9 = R_biimpd(f"{ph}", f"{ch}", f"{th}", h2)
+    return R_syld(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, s9)
+
+def R_sylbid(ph, ps, ch, th, h1, h2):
+    s8 = R_biimpd(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_syld(f"{ph}", f"{ps}", f"{ch}", f"{th}", s8, h2)
+
+def R_mpbidi(ph, ps, ch, th, h1, h2):
+    s9 = R_biimpd(f"{ph}", f"{ps}", f"{ch}", h2)
+    return R_sylcom(f"{th}", f"{ph}", f"{ps}", f"{ch}", h1, s9)
+
+def R_biimtrid(ph, ps, ch, th, h1, h2):
+    s7 = R_biimpi(f"{ph}", f"{ps}", h1)
+    return R_syl5(f"{ph}", f"{ps}", f"{ch}", f"{th}", s7, h2)
+
+def R_biimtrrid(ph, ps, ch, th, h1, h2):
+    s7 = R_biimpri(f"{ps}", f"{ph}", h1)
+    return R_syl5(f"{ph}", f"{ps}", f"{ch}", f"{th}", s7, h2)
+
+def R_imbitrid(ph, ps, ch, th, h1, h2):
+    s9 = R_biimpd(f"{ch}", f"{ps}", f"{th}", h2)
+    return R_syl5(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, s9)
+
+def R_syl5ibcom(ph, ps, ch, th, h1, h2):
+    s9 = R_imbitrid(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h2)
+    return R_com12(f"{ch}", f"{ph}", f"{th}", s9)
+
+def R_imbitrrid(ph, ps, ch, th, h1, h2):
+    s9 = R_bicomd(f"{ch}", f"{ps}", f"{th}", h2)
+    return R_imbitrid(f"{ph}", f"{th}", f"{ch}", f"{ps}", h1, s9)
+
+def R_syl5ibrcom(ph, ps, ch, th, h1, h2):
+    s9 = R_imbitrrid(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h2)
+    return R_com12(f"{ch}", f"{ph}", f"{ps}", s9)
+
+def R_biimprd(ph, ps, ch, h1):
+    s5 = R_id(f"{ch}")
+    return R_imbitrrid(f"{ch}", f"{ps}", f"{ph}", f"{ch}", s5, h1)
+
+def R_biimpcd(ph, ps, ch, h1):
+    s5 = R_id(f"{ps}")
+    return R_syl5ibcom(f"{ps}", f"{ps}", f"{ph}", f"{ch}", s5, h1)
+
+def R_biimprcd(ph, ps, ch, h1):
+    s5 = R_id(f"{ch}")
+    return R_syl5ibrcom(f"{ch}", f"{ps}", f"{ph}", f"{ch}", s5, h1)
+
+def R_imbitrdi(ph, ps, ch, th, h1, h2):
+    s8 = R_biimpi(f"{ch}", f"{th}", h2)
+    return R_syl6(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, s8)
+
+def R_imbitrrdi(ph, ps, ch, th, h1, h2):
+    s8 = R_biimpri(f"{th}", f"{ch}", h2)
+    return R_syl6(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, s8)
+
+def R_biimtrdi(ph, ps, ch, th, h1, h2):
+    s8 = R_biimpd(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_syl6(f"{ph}", f"{ps}", f"{ch}", f"{th}", s8, h2)
+
+def R_biimtrrdi(ph, ps, ch, th, h1, h2):
+    s8 = R_biimprd(f"{ph}", f"{ch}", f"{ps}", h1)
+    return R_syl6(f"{ph}", f"{ps}", f"{ch}", f"{th}", s8, h2)
+
+def R_syl7bi(ph, ps, ch, th, ta, h1, h2):
+    s8 = R_biimpi(f"{ph}", f"{ps}", h1)
+    return R_syl7(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", s8, h2)
+
+def R_syl8ib(ph, ps, ch, th, ta, h1, h2):
+    s9 = R_biimpi(f"{th}", f"{ta}", h2)
+    return R_syl8(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", h1, s9)
+
+def R_mpbird(ph, ps, ch, h1, h2):
+    s8 = R_biimprd(f"{ph}", f"{ps}", f"{ch}", h2)
+    return R_mpd(f"{ph}", f"{ch}", f"{ps}", h1, s8)
+
+def R_mpbiri(ph, ps, ch, h1, h2):
+    s6 = R_a1i(f"{ch}", f"{ph}", h1)
+    return R_mpbird(f"{ph}", f"{ps}", f"{ch}", s6, h2)
+
+def R_sylibrd(ph, ps, ch, th, h1, h2):
+    s9 = R_biimprd(f"{ph}", f"{th}", f"{ch}", h2)
+    return R_syld(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, s9)
+
+def R_sylbird(ph, ps, ch, th, h1, h2):
+    s8 = R_biimprd(f"{ph}", f"{ch}", f"{ps}", h1)
+    return R_syld(f"{ph}", f"{ps}", f"{ch}", f"{th}", s8, h2)
+
+@Theorem(1, "biid")
+def R_biid(ph):
+    s3 = R_id(f"{ph}")
+    return R_impbii(f"{ph}", f"{ph}", s3, s3)
+
+c.makePage("html/TrueLines.html")
