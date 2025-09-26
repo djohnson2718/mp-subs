@@ -26,3 +26,7 @@ def R_ax_1(ph, ps):
 @Theorem(3, "ax-2")
 def R_ax_2(ph, ps, ch):
     return c.axiom(f"→→{ph}→{ps}{ch}→→{ph}{ps}→{ph}{ch}")
+
+@Theorem(2, "ax-3")
+def R_ax_3(ph, ps):
+    return c.axiom(f"→→¬{ph}¬{ps}→{ps}{ph}")

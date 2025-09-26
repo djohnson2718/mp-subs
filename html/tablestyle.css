@@ -1,0 +1,74 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(to right,#5f2c82, #49a09d);
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+table {
+  margin: 40px auto; /* centers the table horizontally */
+  border-radius: 12px; /* rounded corners */
+  width: 1000px;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(244, 255, 183, 0.5);
+}
+
+th,
+td {
+  padding: 15px;
+  background-color: rgba(0,0,0,0.3);
+  color: #fff;
+  overflow-wrap: break-word;
+  max-width: 700px;
+}
+
+th {
+  text-align: left;
+}
+
+thead {
+  th {
+    background-color: #353c5a;
+  }
+}
+
+tbody {
+  tr {
+    &:hover {
+      background-color: rgba(255,255,255,0.3);
+    }
+  }
+}
+
+tr.antecedent {
+  background-color: rgba(0, 255, 255, 0.5); /* Highlight referenced row */
+}
+
+tr.sub-target {
+  background-color: rgba(0, 255, 255, 0.5); /* Highlight referenced row */
+}
+
+tr.mp-target {
+  background-color: rgba(0, 255, 255, 0.5); /* Highlight referenced row */
+}
+
+tr.named td {
+    color: rgb(248, 248, 187);
+}
+
+tr.axiom td {
+    color : rgb(249, 115, 115);
+}

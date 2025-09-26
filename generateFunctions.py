@@ -8,9 +8,9 @@ def popn(stack,n):
         l[i] = stack.pop()
     return l
 
-wffVarsId = ["ph","ps","ch","th","ta"]
+wffVarsId = ["ph","ps","ch","th","ta","et"]
 
-aritys = {"ax-mp":4, "ax-1":2, "ax-2":3}
+aritys = {"ax-mp":4, "ax-1":2, "ax-2":3, "ax-3":2}
 
 class Hyp:
     def __init__(self, n):
@@ -69,6 +69,9 @@ def makeFunction(nVars, nHyp, refs, codeString, name, writer=print):
             if ref == "wi":
                 wffs = popn(stack,2)
                 stack.append("→" + wffs[0] + wffs[1])
+            elif ref == "wn":
+                wff= stack.pop()
+                stack.append("¬" + wff)
             else:
                 #assume it is a function
                 arity = aritys[ref]
@@ -94,14 +97,15 @@ import re
 pattern = re.compile(r"\$\{.*?\$\}|[\w\-\.]+\s\$p.*?\$\.", re.DOTALL)
 namePattern = re.compile(r"([\w\-\.]+)\s\$p\s\|-")
 codeStringPattern = re.compile(r"\$=\s*\((.*?)\)\s*([A-Z]+)\s*\$")
-refsPattern = re.compile(r"\(\s([\sa-z0-9\-]+)\s\)")
+refsPattern = re.compile(r"\(\s([\sa-z0-9\-\.]+)\s\)")
 
 with open("set.mm") as f:
-    setmm = f.read(50000)
+    setmm = f.read(100000)
 
 #print(setmm[-4500:])
 l = re.findall(pattern, setmm)
 
+excludeNames = set([])
 count = 0
 with open("TrueLines.py", "w") as tl:
     tl.write("from header import *\n\n")
@@ -110,27 +114,28 @@ with open("TrueLines.py", "w") as tl:
         if count < 10:
             continue
         print(s)
-        nHyp = s.count("|-")-1
-        nameSearchResult = namePattern.search(s)
-        name = nameSearchResult.group(1)
-        if name == '4syl' or name == 'idALT' or name == 'syl2im' or name == 'syl2imc':
-            #syl2imc reused hypotheses
-            continue
-        print(name)
-        print(nHyp)
-        codeString = codeStringPattern.search(s).group(2)
-        print(codeString)
-        refsString = refsPattern.search(s).group(1)
-        print(refsString)
-        refs = [r for r in refsString.split(" ") if len(r)>0]
-        print(refs)
-        for i, v in enumerate(wffVarsId):
+        
+        codestrings = [c.group(2) for c in codeStringPattern.finditer(s)]
+        refsStrings = [r.group(1) for r in refsPattern.finditer(s)]
+        names = [n.group(1) for n in  namePattern.finditer(s)]
+        refeses = [[r for r in refsString.split(" ") if len(r)>0] for refsString in refsStrings]
+        nHyp = s.count("|-")-len(names)
+        nVars = 0
+        for v in wffVarsId:
             if f" {v} " in s:
-                nVars = i + 1
-            else:
-                break
-        print("******")
-        makeFunction(nVars, nHyp, refs, codeString, name, writer=lambda line : tl.write(line + "\n"))
+                nVars += 1
+        for name, refs, codeString in zip(names, refeses, codestrings):
+            if name in excludeNames or name.endswith("ALT"):
+                continue
+            if name == 'notnotrd':
+                nHyp -= 2 
+            print("### Name: " + name)
+            print("hyps "  + str(nHyp))
+            print("vars "  + str(nVars))
+            print(codeString)
+            print(refs)
+            makeFunction(nVars, nHyp, refs, codeString, name, writer=lambda line : tl.write(line + "\n"))
+            print("******")
         print()
     tl.write(r'c.makePage("html/TrueLines.html")')
 

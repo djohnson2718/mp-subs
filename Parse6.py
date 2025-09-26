@@ -1,5 +1,5 @@
 import re
-wffVars = '𝜑𝜓𝜒𝜃𝜏'
+wffVars = '𝜑𝜓𝜒𝜃𝜏𝜂'
 """𝛼𝛽𝛾"""
 
 class InsertOnlyDict(dict):
