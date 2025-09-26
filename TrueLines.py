@@ -835,4 +835,10 @@ def R_bijust0(ph):
 def R_bijust(ph, ps):
     return R_bijust0(f"¬→→{ph}{ps}¬→{ps}{ph}")
 
-c.makePage("html/TrueLines.html")
+@Theorem(2, "impbi")
+def R_impbi(ph, ps):
+    s31 = R_df_bi(f"{ph}", f"{ps}")
+    s34 = R_simprim(f"→↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}", f"→¬→→{ph}{ps}¬→{ps}{ph}↔{ph}{ps}")
+    s35 = R_ax_mp(f"¬→→↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}¬→¬→→{ph}{ps}¬→{ps}{ph}↔{ph}{ps}", f"→¬→→{ph}{ps}¬→{ps}{ph}↔{ph}{ps}", s31, s34)
+    return R_expi(f"→{ph}{ps}", f"→{ps}{ph}", f"↔{ph}{ps}", s35)
+

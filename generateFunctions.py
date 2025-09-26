@@ -10,7 +10,7 @@ def popn(stack,n):
 
 wffVarsId = ["ph","ps","ch","th","ta","et"]
 
-aritys = {"ax-mp":4, "ax-1":2, "ax-2":3, "ax-3":2}
+aritys = {"ax-mp":4, "ax-1":2, "ax-2":3, "ax-3":2, "df-bi":2}
 
 class Hyp:
     def __init__(self, n):
@@ -72,6 +72,9 @@ def makeFunction(nVars, nHyp, refs, codeString, name, writer=print):
             elif ref == "wn":
                 wff= stack.pop()
                 stack.append("¬" + wff)
+            elif ref == "wb":
+                wffs = popn(stack,2)
+                stack.append("↔" + wffs[0] + wffs[1])
             else:
                 #assume it is a function
                 arity = aritys[ref]
@@ -100,7 +103,7 @@ codeStringPattern = re.compile(r"\$=\s*\((.*?)\)\s*([A-Z]+)\s*\$")
 refsPattern = re.compile(r"\(\s([\sa-z0-9\-\.]+)\s\)")
 
 with open("set.mm") as f:
-    setmm = f.read(100000)
+    setmm = f.read(120000)
 
 #print(setmm[-4500:])
 l = re.findall(pattern, setmm)

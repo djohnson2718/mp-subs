@@ -30,3 +30,12 @@ def R_ax_2(ph, ps, ch):
 @Theorem(2, "ax-3")
 def R_ax_3(ph, ps):
     return c.axiom(f"→→¬{ph}¬{ps}→{ps}{ph}")
+
+def and_(ph, ps):
+    return f"¬→{ph}¬{ps}"
+
+@Theorem(2, "df-bi")
+def R_df_bi(ph, ps):
+    return c.axiom(and_(f"→↔{ph}{ps}{and_(f"→{ph}{ps}", f"→{ps}{ph}")}", f"→{and_(f"→{ph}{ps}", f"→{ps}{ph}")}↔{ph}{ps}"))
+
+    #return c.axiom(f"→¬→↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}¬→¬→→{ph}{ps}¬→{ps}{ph}↔{ph}{ps}")
