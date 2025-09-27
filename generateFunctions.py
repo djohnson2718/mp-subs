@@ -1,7 +1,3 @@
-
-from string import digits
-
-
 def popn(stack,n):
     l = [None]*n
     for i in range(n-1,-1,-1):
@@ -117,12 +113,22 @@ namePattern = re.compile(r"([\w\-\.]+)\s\$p\s\|-")
 codeStringPattern = re.compile(r"\$=\s*\((.*?)\)\s*([A-Z\s]+)\s\$\.")
 refsPattern = re.compile(r"\(\s([\sa-z0-9\-\.]+)\s\)")
 
+p = re.compile(r"[\w\-\.]+\s\$e\s\|\-\s\(\s(?P<hyp>.*?)\s\)\s\$.|(?P<name>[\w\-\.]+)\s\$p\s\|\-\s\(\s(?P<provable>.*?)\s\)\s\$\=\w+\(\s(?P<refs>.*?)\s\)\s(?P<code>[A-Z\s]+)\s\$\.")
+
+
+def countVars(hyps):
+    nVars = 0
+    for v in wffVarsId:
+        for h in hyps:
+            if v in h:
+                nVars += 1
+                break
+    return nVars
+
 with open("set.mm") as f:
     setmm = f.read(200000)
 
-#print(setmm[-4500:])
 l = re.findall(pattern, setmm)
-
 excludeNames = set([])
 count = 0
 with open("TrueLines.py", "w") as tl:
@@ -132,7 +138,30 @@ with open("TrueLines.py", "w") as tl:
         if count < 8:
             continue
         print(s)
-        
+        hyps = []
+        for m in p.finditer(s):
+            if m.group("hyp") != None:
+                hyps.append(m.group("hyp"))
+                continue
+            print (hyps)
+            if m.group("provable") != None:
+                code = m.group("code")
+                refs = m.group("refs").split(" ")
+                nHyps = len(hyps)
+                nVars = countVars(hyps + [m.group("provable")])
+                name = m.group("name")
+                if name in excludeNames or name.endswith("ALT"):
+                    print("### Skipping: " + name)
+                    continue
+                print("#### Name: " + name)
+                print("hyps "  + str(nHyp))
+                print("vars "  + str(nVars))
+                print(codeString)
+                print(refs)
+                makeFunction(nVars, nHyp, refs, codeString, name, writer=lambda line : tl.write(line + "\n"))
+                print("******")
+                
+                
         codestrings = [c.group(2) for c in codeStringPattern.finditer(s)]
         refsStrings = [r.group(1) for r in refsPattern.finditer(s)]
         names = [n.group(1) for n in  namePattern.finditer(s)]
