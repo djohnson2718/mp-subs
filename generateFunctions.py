@@ -12,6 +12,23 @@ wffVarsId = ["ph","ps","ch","th","ta","et"]
 
 aritys = {"ax-mp":4, "ax-1":2, "ax-2":3, "ax-3":2, "df-bi":2}
 
+class Operator:
+    def __init__(self, symbol, mmString, arity):
+        self.symbol = symbol
+        self.arity = arity
+        self.mmString = mmString
+
+    def __repr__(self):
+        return self.symbol
+    
+ops = {
+    "wn" : Operator("¬", "wn", 1),
+    "wi" : Operator("→", "wi", 2),
+    "wb" : Operator("↔", "wb", 2),
+    "wa" : Operator("∧", "wa", 2),
+    "wo" : Operator("∨", "wo", 2)
+}
+
 class Hyp:
     def __init__(self, n):
         self.n = n
@@ -69,15 +86,10 @@ def makeFunction(nVars, nHyp, refs, codeString, name, writer=print):
             stack.append(Hyp(s - nVars + 1))
         elif s < nVars + nHyp + len(refs):
             ref = refs[s - nVars - nHyp]
-            if ref == "wi":
-                wffs = popn(stack,2)
-                stack.append("→" + wffs[0] + wffs[1])
-            elif ref == "wn":
-                wff= stack.pop()
-                stack.append("¬" + wff)
-            elif ref == "wb":
-                wffs = popn(stack,2)
-                stack.append("↔" + wffs[0] + wffs[1])
+            if ref in ops:
+                op = ops[ref]
+                pops = popn(stack, op.arity)
+                stack.append(op.symbol + "".join(pops))
             else:
                 #assume it is a function
                 arity = aritys[ref]
@@ -106,7 +118,7 @@ codeStringPattern = re.compile(r"\$=\s*\((.*?)\)\s*([A-Z\s]+)\s\$\.")
 refsPattern = re.compile(r"\(\s([\sa-z0-9\-\.]+)\s\)")
 
 with open("set.mm") as f:
-    setmm = f.read(120000)
+    setmm = f.read(200000)
 
 #print(setmm[-4500:])
 l = re.findall(pattern, setmm)

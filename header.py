@@ -1,6 +1,6 @@
-from Context3 import Context3, wffVars
+from Context3 import Context3, wffVars, c
 
-c = Context3()
+
 
 class Theorem:
     def __init__(self, nVars, name):

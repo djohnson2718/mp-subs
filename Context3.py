@@ -27,7 +27,7 @@ class Theorem:
             classes.append("named")
         classes.append(self.proof.htmlClass())
         classStr = " ".join(classes)
-        return f'<tr id = {self.id} {self.proof.htmlRefs()} class = "{classStr}" ><td>{self.id}</td><td>{self.wff}</td><td>{self.proof}</td><td>{namesStr}</td></tr>'
+        return f'<tr id = row{self.id} {self.proof.htmlRefs()} class = "{classStr}" ><td>{self.id}</td><td>{self.wff}</td><td>{self.proof}</td><td>{namesStr}</td></tr>'
     
 @dataclass
 class ModusPonensProof(Proof):
@@ -35,10 +35,12 @@ class ModusPonensProof(Proof):
     targetId : int
 
     def __str__(self):
-        return f"Modus ponens {self.antecedentId}, {self.targetId}"
-    
+        antName = c.getName(self.antecedentId)
+        targetName = c.getName(self.targetId)
+        return f"Modus ponens <a href = '#row{self.antecedentId}'>{antName}</a>, <a href = '#row{self.targetId}'>{targetName}</a>"
+
     def htmlRefs(self):
-        return f'antecedent = "{self.antecedentId}" mp-target = "{self.targetId}"'
+        return f'antecedent = "row{self.antecedentId}" mp-target = "row{self.targetId}"'
     
     def htmlClass(self):
         return "mp"
@@ -49,11 +51,12 @@ class SubstiutionProof(Proof):
     subsDict : dict
 
     def __str__(self):
+        targetName = c.getName(self.targetId)
         s = ", ".join([k + '↗' + v for k,v in self.subsDict.items() if not k == v])
-        return f"Subs [{s}] into {self.targetId}"
+        return f"Subs [{s}] into <a href = '#row{self.targetId}'>{targetName}</a>"
     
     def htmlRefs(self):
-        return f'sub-target = "{self.targetId}"'
+        return f'sub-target = "row{self.targetId}"'
     
     def htmlClass(self):
         return "subs"
@@ -74,6 +77,13 @@ class Context3:
         self.verbose = True
         self.contextName = ""
 
+    def getName(self, thmId):
+        thm = self[thmId]
+        if len(thm.names) > 0:
+            return thm.names[0]
+        else:
+            return str(thmId)
+        
     def __getitem__(self, thmId):
         if isinstance(thmId, int):
             thm = self.theorems[thmId]
@@ -165,3 +175,5 @@ class Context3:
                 </tbody>
             </table>
         </body>"""
+
+c = Context3()
