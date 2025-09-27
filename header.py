@@ -38,4 +38,6 @@ def and_(ph, ps):
 def R_df_bi(ph, ps):
     return c.axiom(and_(f"→↔{ph}{ps}{and_(f"→{ph}{ps}", f"→{ps}{ph}")}", f"→{and_(f"→{ph}{ps}", f"→{ps}{ph}")}↔{ph}{ps}"))
 
-    #return c.axiom(f"→¬→↔{ph}{ps}¬→→{ph}{ps}¬→{ps}{ph}¬→¬→→{ph}{ps}¬→{ps}{ph}↔{ph}{ps}")
+@Theorem(2, "df-an")
+def R_df_an(ph, ps):
+    return c.axiom(f"↔⋀{ph}{ps}{and_(ph, ps)}")

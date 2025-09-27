@@ -6,7 +6,7 @@ def popn(stack,n):
 
 wffVarsId = ["ph","ps","ch","th","ta","et"]
 
-aritys = {"ax-mp":4, "ax-1":2, "ax-2":3, "ax-3":2, "df-bi":2}
+aritys = {"ax-mp":4, "ax-1":2, "ax-2":3, "ax-3":2, "df-bi":2, 'df-an':2}
 
 class Operator:
     def __init__(self, symbol, mmString, arity):
@@ -21,7 +21,7 @@ ops = {
     "wn" : Operator("¬", "wn", 1),
     "wi" : Operator("→", "wi", 2),
     "wb" : Operator("↔", "wb", 2),
-    "wa" : Operator("∧", "wa", 2),
+    "wa" : Operator("⋀", "wa", 2),
     "wo" : Operator("∨", "wo", 2)
 }
 
@@ -113,7 +113,7 @@ namePattern = re.compile(r"([\w\-\.]+)\s\$p\s\|-")
 codeStringPattern = re.compile(r"\$=\s*\((.*?)\)\s*([A-Z\s]+)\s\$\.")
 refsPattern = re.compile(r"\(\s([\sa-z0-9\-\.]+)\s\)")
 
-p = re.compile(r"[\w\-\.]+\s\$e\s\|\-\s\(\s(?P<hyp>.*?)\s\)\s\$.|(?P<name>[\w\-\.]+)\s\$p\s\|\-\s\(\s(?P<provable>.*?)\s\)\s\$\=\w+\(\s(?P<refs>.*?)\s\)\s(?P<code>[A-Z\s]+)\s\$\.")
+p = re.compile(r"[\w\-\.]+\s\$e\s\|\-\s(?P<hyp>.*?)\s\$.|(?P<name>[\w\-\.]+)\s\$p\s\|\-\s(?P<provable>.*?)\s\$\=\s+\(\s(?P<refs>.*?)\s\)\s(?P<code>[A-Z\s]+)\s\$\.", re.DOTALL)
 
 
 def countVars(hyps):
@@ -137,7 +137,7 @@ with open("TrueLines.py", "w") as tl:
         count += 1
         if count < 8:
             continue
-        print(s)
+        print("s= \n" + s)
         hyps = []
         for m in p.finditer(s):
             if m.group("hyp") != None:
@@ -145,9 +145,9 @@ with open("TrueLines.py", "w") as tl:
                 continue
             print (hyps)
             if m.group("provable") != None:
-                code = m.group("code")
+                codeString = m.group("code")
                 refs = m.group("refs").split(" ")
-                nHyps = len(hyps)
+                nHyp = len(hyps)
                 nVars = countVars(hyps + [m.group("provable")])
                 name = m.group("name")
                 if name in excludeNames or name.endswith("ALT"):
@@ -161,29 +161,6 @@ with open("TrueLines.py", "w") as tl:
                 makeFunction(nVars, nHyp, refs, codeString, name, writer=lambda line : tl.write(line + "\n"))
                 print("******")
                 
-                
-        codestrings = [c.group(2) for c in codeStringPattern.finditer(s)]
-        refsStrings = [r.group(1) for r in refsPattern.finditer(s)]
-        names = [n.group(1) for n in  namePattern.finditer(s)]
-        refeses = [[r for r in refsString.split(" ") if len(r)>0] for refsString in refsStrings]
-        nHyp = s.count("|-")-len(names)
-        nVars = 0
-        for v in wffVarsId:
-            if f" {v} " in s:
-                nVars += 1
-        for name, refs, codeString in zip(names, refeses, codestrings):
-            if name in excludeNames or name.endswith("ALT"):
-                print("### Skipping: " + name)
-                continue
-            if name == 'notnotrd':
-                nHyp -= 2 
-            print("### Name: " + name)
-            print("hyps "  + str(nHyp))
-            print("vars "  + str(nVars))
-            print(codeString)
-            print(refs)
-            makeFunction(nVars, nHyp, refs, codeString, name, writer=lambda line : tl.write(line + "\n"))
-            print("******")
         print()
     tl.write(r'c.makePage("html/TrueLines.html")')
 
