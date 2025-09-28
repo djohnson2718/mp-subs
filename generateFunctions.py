@@ -4,7 +4,7 @@ def popn(stack,n):
         l[i] = stack.pop()
     return l
 
-wffVarsId = ["ph","ps","ch","th","ta","et"]
+wffVarsId = ["ph","ps","ch","th","ta","et","ze","si","rh","mu","la","ka"]
 
 aritys = {"ax-mp":4, "ax-1":2, "ax-2":3, "ax-3":2, "df-bi":2, 'df-an':2}
 
@@ -126,7 +126,7 @@ def countVars(hyps):
     return nVars
 
 with open("set.mm") as f:
-    setmm = f.read(200000)
+    setmm = f.read(350000)
 
 l = re.findall(pattern, setmm)
 excludeNames = set([])
@@ -166,3 +166,35 @@ with open("TrueLines.py", "w") as tl:
 
 
 
+"""
+need to make it work with things like:
+  ${
+    syl12anc.1 $e |- ( ph -> ps ) $.
+    syl12anc.2 $e |- ( ph -> ch ) $.
+    syl12anc.3 $e |- ( ph -> th ) $.
+    ${
+      syl12anc.4 $e |- ( ( ps /\ ( ch /\ th ) ) -> ta ) $.
+      $( Syllogism combined with contraction.  (Contributed by Jeff Hankins,
+         1-Aug-2009.) $)
+      syl12anc $p |- ( ph -> ta ) $=
+        ( wa jca syl2anc ) ABCDJEFACDGHKIL $.
+    $}
+
+    ${
+      syl21anc.4 $e |- ( ( ( ps /\ ch ) /\ th ) -> ta ) $.
+      $( Syllogism combined with contraction.  (Contributed by Jeff Hankins,
+         1-Aug-2009.) $)
+      syl21anc $p |- ( ph -> ta ) $=
+        ( wa jca syl2anc ) ABCJDEABCFGKHIL $.
+    $}
+
+    ${
+      syl22anc.4 $e |- ( ph -> ta ) $.
+      syl22anc.5 $e |- ( ( ( ps /\ ch ) /\ ( th /\ ta ) ) -> et ) $.
+      $( Syllogism combined with contraction.  (Contributed by NM,
+         11-Mar-2012.) $)
+      syl22anc $p |- ( ph -> et ) $=
+        ( wa jca syl12anc ) ABCLDEFABCGHMIJKN $.
+    $}
+  $}
+"""

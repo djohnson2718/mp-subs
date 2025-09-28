@@ -2366,4 +2366,1375 @@ def R_rbaib(ph, ps, ch, h1):
     s7 = R_rbaibr(f"{ph}", f"{ps}", f"{ch}", h1)
     return R_bicomd(f"{ch}", f"{ps}", f"{ph}", s7)
 
-c.makePage("html/TrueLines.html")
+def R_baibd(ph, ps, ch, th, h1):
+    s14 = R_ibar(f"{ch}", f"{th}")
+    s15 = R_bicomd(f"{ch}", f"{th}", f"⋀{ch}{th}", s14)
+    return R_sylan9bb(f"{ph}", f"{ps}", f"⋀{ch}{th}", f"{ch}", f"{th}", h1, s15)
+
+def R_rbaibd(ph, ps, ch, th, h1):
+    s9 = R_biancomd(f"{ph}", f"{ps}", f"{th}", f"{ch}", h1)
+    return R_baibd(f"{ph}", f"{ps}", f"{th}", f"{ch}", s9)
+
+def R_bianabs(ph, ps, ch, h1):
+    s9 = R_ibar(f"{ph}", f"{ch}")
+    return R_bitr4d(f"{ph}", f"{ps}", f"⋀{ph}{ch}", f"{ch}", h1, s9)
+
+@Theorem(3, "pm5.44")
+def R_pm5_44(ph, ps, ch):
+    s14 = R_jcab(f"{ph}", f"{ps}", f"{ch}")
+    return R_baibr(f"→{ph}⋀{ps}{ch}", f"→{ph}{ps}", f"→{ph}{ch}", s14)
+
+@Theorem(3, "pm5.42")
+def R_pm5_42(ph, ps, ch):
+    s16 = R_ibar(f"{ph}", f"{ch}")
+    s17 = R_imbi2d(f"{ph}", f"{ch}", f"⋀{ph}{ch}", f"{ps}", s16)
+    return R_pm5_74i(f"{ph}", f"→{ps}{ch}", f"→{ps}⋀{ph}{ch}", s17)
+
+@Theorem(2, "ancl")
+def R_ancl(ph, ps):
+    s7 = R_pm3_2(f"{ph}", f"{ps}")
+    return R_a2i(f"{ph}", f"{ps}", f"⋀{ph}{ps}", s7)
+
+@Theorem(2, "anclb")
+def R_anclb(ph, ps):
+    s7 = R_ibar(f"{ph}", f"{ps}")
+    return R_pm5_74i(f"{ph}", f"{ps}", f"⋀{ph}{ps}", s7)
+
+@Theorem(2, "ancr")
+def R_ancr(ph, ps):
+    s7 = R_pm3_21(f"{ph}", f"{ps}")
+    return R_a2i(f"{ph}", f"{ps}", f"⋀{ps}{ph}", s7)
+
+@Theorem(2, "ancrb")
+def R_ancrb(ph, ps):
+    s7 = R_iba(f"{ph}", f"{ps}")
+    return R_pm5_74i(f"{ph}", f"{ps}", f"⋀{ps}{ph}", s7)
+
+def R_ancli(ph, ps, h1):
+    s4 = R_id(f"{ph}")
+    return R_jca(f"{ph}", f"{ph}", f"{ps}", s4, h1)
+
+def R_ancri(ph, ps, h1):
+    s5 = R_id(f"{ph}")
+    return R_jca(f"{ph}", f"{ps}", f"{ph}", h1, s5)
+
+def R_ancld(ph, ps, ch, h1):
+    s6 = R_idd(f"{ph}", f"{ps}")
+    return R_jcad(f"{ph}", f"{ps}", f"{ps}", f"{ch}", s6, h1)
+
+def R_ancrd(ph, ps, ch, h1):
+    s7 = R_idd(f"{ph}", f"{ps}")
+    return R_jcad(f"{ph}", f"{ps}", f"{ch}", f"{ps}", h1, s7)
+
+def R_impac(ph, ps, ch, h1):
+    s9 = R_ancrd(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_imp(f"{ph}", f"{ps}", f"⋀{ch}{ps}", s9)
+
+@Theorem(3, "anc2l")
+def R_anc2l(ph, ps, ch):
+    s15 = R_pm5_42(f"{ph}", f"{ps}", f"{ch}")
+    return R_biimpi(f"→{ph}→{ps}{ch}", f"→{ph}→{ps}⋀{ph}{ch}", s15)
+
+@Theorem(3, "anc2r")
+def R_anc2r(ph, ps, ch):
+    s16 = R_pm3_21(f"{ph}", f"{ch}")
+    s17 = R_imim2d(f"{ph}", f"{ch}", f"⋀{ch}{ph}", f"{ps}", s16)
+    return R_a2i(f"{ph}", f"→{ps}{ch}", f"→{ps}⋀{ch}{ph}", s17)
+
+def R_anc2li(ph, ps, ch, h1):
+    s6 = R_id(f"{ph}")
+    return R_jctild(f"{ph}", f"{ps}", f"{ch}", f"{ph}", h1, s6)
+
+def R_anc2ri(ph, ps, ch, h1):
+    s6 = R_id(f"{ph}")
+    return R_jctird(f"{ph}", f"{ps}", f"{ch}", f"{ph}", h1, s6)
+
+@Theorem(2, "pm4.71")
+def R_pm4_71(ph, ps):
+    s23 = R_simpl(f"{ph}", f"{ps}")
+    s24 = R_biantru(f"→⋀{ph}{ps}{ph}", f"→{ph}⋀{ph}{ps}", s23)
+    s27 = R_anclb(f"{ph}", f"{ps}")
+    s30 = R_dfbi2(f"{ph}", f"⋀{ph}{ps}")
+    return R_3bitr4i(f"→{ph}⋀{ph}{ps}", f"⋀→{ph}⋀{ph}{ps}→⋀{ph}{ps}{ph}", f"→{ph}{ps}", f"↔{ph}⋀{ph}{ps}", s24, s27, s30)
+
+@Theorem(2, "pm4.71r")
+def R_pm4_71r(ph, ps):
+    s17 = R_pm4_71(f"{ph}", f"{ps}")
+    s23 = R_ancom(f"{ph}", f"{ps}")
+    s24 = R_bibi2i(f"⋀{ph}{ps}", f"⋀{ps}{ph}", f"{ph}", s23)
+    return R_bitri(f"→{ph}{ps}", f"↔{ph}⋀{ph}{ps}", f"↔{ph}⋀{ps}{ph}", s17, s24)
+
+def R_pm4_71i(ph, ps, h1):
+    s11 = R_pm4_71(f"{ph}", f"{ps}")
+    return R_mpbi(f"→{ph}{ps}", f"↔{ph}⋀{ph}{ps}", h1, s11)
+
+def R_pm4_71ri(ph, ps, h1):
+    s6 = R_pm4_71i(f"{ph}", f"{ps}", h1)
+    return R_biancomi(f"{ph}", f"{ps}", f"{ph}", s6)
+
+def R_pm4_71d(ph, ps, ch, h1):
+    s12 = R_pm4_71(f"{ps}", f"{ch}")
+    return R_sylib(f"{ph}", f"→{ps}{ch}", f"↔{ps}⋀{ps}{ch}", h1, s12)
+
+def R_pm4_71rd(ph, ps, ch, h1):
+    s8 = R_pm4_71d(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_biancomd(f"{ph}", f"{ps}", f"{ch}", f"{ps}", s8)
+
+@Theorem(1, "pm4.24")
+def R_pm4_24(ph):
+    s3 = R_id(f"{ph}")
+    return R_pm4_71i(f"{ph}", f"{ph}", s3)
+
+@Theorem(1, "anidm")
+def R_anidm(ph):
+    s5 = R_pm4_24(f"{ph}")
+    return R_bicomi(f"{ph}", f"⋀{ph}{ph}", s5)
+
+@Theorem(2, "anidmdbi")
+def R_anidmdbi(ph, ps):
+    s6 = R_anidm(f"{ps}")
+    return R_imbi2i(f"⋀{ps}{ps}", f"{ps}", f"{ph}", s6)
+
+def R_anidms(ph, ps, h1):
+    s6 = R_ex(f"{ph}", f"{ph}", f"{ps}", h1)
+    return R_pm2_43i(f"{ph}", f"{ps}", s6)
+
+@Theorem(3, "imdistan")
+def R_imdistan(ph, ps, ch):
+    s21 = R_pm5_42(f"{ph}", f"{ps}", f"{ch}")
+    s25 = R_impexp(f"{ph}", f"{ps}", f"⋀{ph}{ch}")
+    return R_bitr4i(f"→{ph}→{ps}{ch}", f"→{ph}→{ps}⋀{ph}{ch}", f"→⋀{ph}{ps}⋀{ph}{ch}", s21, s25)
+
+def R_imdistani(ph, ps, ch, h1):
+    s9 = R_anc2li(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_imp(f"{ph}", f"{ps}", f"⋀{ph}{ch}", s9)
+
+def R_imdistanri(ph, ps, ch, h1):
+    s7 = R_com12(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_impac(f"{ps}", f"{ph}", f"{ch}", s7)
+
+def R_imdistand(ph, ps, ch, th, h1):
+    s17 = R_imdistan(f"{ps}", f"{ch}", f"{th}")
+    return R_sylib(f"{ph}", f"→{ps}→{ch}{th}", f"→⋀{ps}{ch}⋀{ps}{th}", h1, s17)
+
+def R_imdistanda(ph, ps, ch, th, h1):
+    s10 = R_ex(f"{ph}", f"{ps}", f"→{ch}{th}", h1)
+    return R_imdistand(f"{ph}", f"{ps}", f"{ch}", f"{th}", s10)
+
+@Theorem(3, "pm5.3")
+def R_pm5_3(ph, ps, ch):
+    s13 = R_simpl(f"{ph}", f"{ps}")
+    s14 = R_biantrurd(f"⋀{ph}{ps}", f"{ph}", f"{ch}", s13)
+    return R_pm5_74i(f"⋀{ph}{ps}", f"{ch}", f"⋀{ph}{ch}", s14)
+
+@Theorem(3, "pm5.32")
+def R_pm5_32(ph, ps, ch):
+    s50 = R_notbi(f"{ps}", f"{ch}")
+    s51 = R_imbi2i(f"↔{ps}{ch}", f"↔¬{ps}¬{ch}", f"{ph}", s50)
+    s55 = R_pm5_74(f"{ph}", f"¬{ps}", f"¬{ch}")
+    s58 = R_notbi(f"→{ph}¬{ps}", f"→{ph}¬{ch}")
+    s59 = R_3bitri(f"→{ph}↔{ps}{ch}", f"→{ph}↔¬{ps}¬{ch}", f"↔→{ph}¬{ps}→{ph}¬{ch}", f"↔¬→{ph}¬{ps}¬→{ph}¬{ch}", s51, s55, s58)
+    s66 = R_df_an(f"{ph}", f"{ps}")
+    s69 = R_df_an(f"{ph}", f"{ch}")
+    s70 = R_bibi12i(f"⋀{ph}{ps}", f"¬→{ph}¬{ps}", f"⋀{ph}{ch}", f"¬→{ph}¬{ch}", s66, s69)
+    return R_bitr4i(f"→{ph}↔{ps}{ch}", f"↔¬→{ph}¬{ps}¬→{ph}¬{ch}", f"↔⋀{ph}{ps}⋀{ph}{ch}", s59, s70)
+
+def R_pm5_32i(ph, ps, ch, h1):
+    s16 = R_pm5_32(f"{ph}", f"{ps}", f"{ch}")
+    return R_mpbi(f"→{ph}↔{ps}{ch}", f"↔⋀{ph}{ps}⋀{ph}{ch}", h1, s16)
+
+def R_pm5_32ri(ph, ps, ch, h1):
+    s16 = R_pm5_32i(f"{ph}", f"{ps}", f"{ch}", h1)
+    s19 = R_ancom(f"{ps}", f"{ph}")
+    s22 = R_ancom(f"{ch}", f"{ph}")
+    return R_3bitr4i(f"⋀{ph}{ps}", f"⋀{ph}{ch}", f"⋀{ps}{ph}", f"⋀{ch}{ph}", s16, s19, s22)
+
+def R_pm5_32d(ph, ps, ch, th, h1):
+    s17 = R_pm5_32(f"{ps}", f"{ch}", f"{th}")
+    return R_sylib(f"{ph}", f"→{ps}↔{ch}{th}", f"↔⋀{ps}{ch}⋀{ps}{th}", h1, s17)
+
+def R_pm5_32rd(ph, ps, ch, th, h1):
+    s18 = R_pm5_32d(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    s21 = R_ancom(f"{ch}", f"{ps}")
+    s24 = R_ancom(f"{th}", f"{ps}")
+    return R_3bitr4g(f"{ph}", f"⋀{ps}{ch}", f"⋀{ps}{th}", f"⋀{ch}{ps}", f"⋀{th}{ps}", s18, s21, s24)
+
+def R_pm5_32da(ph, ps, ch, th, h1):
+    s10 = R_ex(f"{ph}", f"{ps}", f"↔{ch}{th}", h1)
+    return R_pm5_32d(f"{ph}", f"{ps}", f"{ch}", f"{th}", s10)
+
+def R_sylan(ph, ps, ch, th, h1, h2):
+    s9 = R_expcom(f"{ps}", f"{ch}", f"{th}", h2)
+    return R_mpan9(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, s9)
+
+def R_sylanb(ph, ps, ch, th, h1, h2):
+    s7 = R_biimpi(f"{ph}", f"{ps}", h1)
+    return R_sylan(f"{ph}", f"{ps}", f"{ch}", f"{th}", s7, h2)
+
+def R_sylanbr(ph, ps, ch, th, h1, h2):
+    s7 = R_biimpri(f"{ps}", f"{ph}", h1)
+    return R_sylan(f"{ph}", f"{ps}", f"{ch}", f"{th}", s7, h2)
+
+def R_sylanbrc(ph, ps, ch, th, h1, h2, h3):
+    s10 = R_jca(f"{ph}", f"{ps}", f"{ch}", h1, h2)
+    return R_sylibr(f"{ph}", f"⋀{ps}{ch}", f"{th}", s10, h3)
+
+def R_syl2anc(ph, ps, ch, th, h1, h2, h3):
+    s10 = R_ex(f"{ps}", f"{ch}", f"{th}", h3)
+    return R_sylc(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h2, s10)
+
+def R_syl2anc2(ph, ps, ch, th, h1, h2, h3):
+    s10 = R_syl(f"{ph}", f"{ps}", f"{ch}", h1, h2)
+    return R_syl2anc(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, s10, h3)
+
+def R_sylancl(ph, ps, ch, th, h1, h2, h3):
+    s8 = R_a1i(f"{ch}", f"{ph}", h2)
+    return R_syl2anc(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, s8, h3)
+
+def R_sylancr(ph, ps, ch, th, h1, h2, h3):
+    s7 = R_a1i(f"{ps}", f"{ph}", h1)
+    return R_syl2anc(f"{ph}", f"{ps}", f"{ch}", f"{th}", s7, h2, h3)
+
+def R_sylancom(ph, ps, ch, th, h1, h2):
+    s9 = R_simpr(f"{ph}", f"{ps}")
+    return R_syl2anc(f"⋀{ph}{ps}", f"{ch}", f"{ps}", f"{th}", h1, s9, h2)
+
+def R_sylanblc(ph, ps, ch, th, h1, h2, h3):
+    s11 = R_biimpi(f"⋀{ps}{ch}", f"{th}", h3)
+    return R_sylancl(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h2, s11)
+
+def R_sylanblrc(ph, ps, ch, th, h1, h2, h3):
+    s8 = R_a1i(f"{ch}", f"{ph}", h2)
+    return R_sylanbrc(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, s8, h3)
+
+def R_syldan(ph, ps, ch, th, h1, h2):
+    s8 = R_simpl(f"{ph}", f"{ps}")
+    return R_syl2anc(f"⋀{ph}{ps}", f"{ph}", f"{ch}", f"{th}", s8, h1, h2)
+
+def R_sylbida(ph, ps, ch, th, h1, h2):
+    s8 = R_biimpa(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_syldan(f"{ph}", f"{ps}", f"{ch}", f"{th}", s8, h2)
+
+def R_sylan2(ph, ps, ch, th, h1, h2):
+    s8 = R_adantl(f"{ph}", f"{ch}", f"{ps}", h1)
+    return R_syldan(f"{ps}", f"{ph}", f"{ch}", f"{th}", s8, h2)
+
+def R_sylan2b(ph, ps, ch, th, h1, h2):
+    s7 = R_biimpi(f"{ph}", f"{ch}", h1)
+    return R_sylan2(f"{ph}", f"{ps}", f"{ch}", f"{th}", s7, h2)
+
+def R_sylan2br(ph, ps, ch, th, h1, h2):
+    s7 = R_biimpri(f"{ch}", f"{ph}", h1)
+    return R_sylan2(f"{ph}", f"{ps}", f"{ch}", f"{th}", s7, h2)
+
+def R_syl2an(ph, ps, ch, th, ta, h1, h2, h3):
+    s11 = R_sylan(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h3)
+    return R_sylan2(f"{ta}", f"{ph}", f"{ch}", f"{th}", h2, s11)
+
+def R_syl2anr(ph, ps, ch, th, ta, h1, h2, h3):
+    s11 = R_syl2an(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", h1, h2, h3)
+    return R_ancoms(f"{ph}", f"{ta}", f"{th}", s11)
+
+def R_syl2anb(ph, ps, ch, th, ta, h1, h2, h3):
+    s11 = R_sylanb(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h3)
+    return R_sylan2b(f"{ta}", f"{ph}", f"{ch}", f"{th}", h2, s11)
+
+def R_syl2anbr(ph, ps, ch, th, ta, h1, h2, h3):
+    s11 = R_sylanbr(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h3)
+    return R_sylan2br(f"{ta}", f"{ph}", f"{ch}", f"{th}", h2, s11)
+
+def R_sylancb(ph, ps, ch, th, h1, h2, h3):
+    s10 = R_syl2anb(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ph}", h1, h2, h3)
+    return R_anidms(f"{ph}", f"{th}", s10)
+
+def R_sylancbr(ph, ps, ch, th, h1, h2, h3):
+    s10 = R_syl2anbr(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ph}", h1, h2, h3)
+    return R_anidms(f"{ph}", f"{th}", s10)
+
+def R_syldanl(ph, ps, ch, th, ta, h1, h2):
+    s15 = R_ex(f"{ph}", f"{ps}", f"{ch}", h1)
+    s16 = R_imdistani(f"{ph}", f"{ps}", f"{ch}", s15)
+    return R_sylan(f"⋀{ph}{ps}", f"⋀{ph}{ch}", f"{th}", f"{ta}", s16, h2)
+
+def R_syland(ph, ps, ch, th, ta, h1, h2):
+    s16 = R_expd(f"{ph}", f"{ch}", f"{th}", f"{ta}", h2)
+    s17 = R_syld(f"{ph}", f"{ps}", f"{ch}", f"→{th}{ta}", h1, s16)
+    return R_impd(f"{ph}", f"{ps}", f"{th}", f"{ta}", s17)
+
+def R_sylani(ph, ps, ch, th, ta, h1, h2):
+    s10 = R_a1i(f"→{ph}{ch}", f"{ps}", h1)
+    return R_syland(f"{ps}", f"{ph}", f"{ch}", f"{th}", f"{ta}", s10, h2)
+
+def R_sylan2d(ph, ps, ch, th, ta, h1, h2):
+    s15 = R_ancomsd(f"{ph}", f"{th}", f"{ch}", f"{ta}", h2)
+    s16 = R_syland(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", h1, s15)
+    return R_ancomsd(f"{ph}", f"{ps}", f"{th}", f"{ta}", s16)
+
+def R_sylan2i(ph, ps, ch, th, ta, h1, h2):
+    s10 = R_a1i(f"→{ph}{th}", f"{ps}", h1)
+    return R_sylan2d(f"{ps}", f"{ph}", f"{th}", f"{ch}", f"{ta}", s10, h2)
+
+def R_syl2ani(ph, ps, ch, th, ta, et, h1, h2, h3):
+    s13 = R_sylan2i(f"{et}", f"{ps}", f"{ch}", f"{th}", f"{ta}", h2, h3)
+    return R_sylani(f"{ph}", f"{ps}", f"{ch}", f"{et}", f"{ta}", h1, s13)
+
+def R_syl2and(ph, ps, ch, th, ta, et, h1, h2, h3):
+    s13 = R_sylan2d(f"{ph}", f"{th}", f"{ta}", f"{ch}", f"{et}", h2, h3)
+    return R_syland(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{et}", h1, s13)
+
+def R_anim12d(ph, ps, ch, th, ta, h1, h2):
+    s13 = R_idd(f"{ph}", f"⋀{ch}{ta}")
+    return R_syl2and(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"⋀{ch}{ta}", h1, h2, s13)
+
+def R_anim12d1(ph, ps, ch, th, ta, h1, h2):
+    s11 = R_a1i(f"→{th}{ta}", f"{ph}", h2)
+    return R_anim12d(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", h1, s11)
+
+def R_anim1d(ph, ps, ch, th, h1):
+    s8 = R_idd(f"{ph}", f"{th}")
+    return R_anim12d(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{th}", h1, s8)
+
+def R_anim2d(ph, ps, ch, th, h1):
+    s7 = R_idd(f"{ph}", f"{th}")
+    return R_anim12d(f"{ph}", f"{th}", f"{th}", f"{ps}", f"{ch}", s7, h1)
+
+def R_anim12i(ph, ps, ch, th, h1, h2):
+    s11 = R_id(f"⋀{ps}{th}")
+    return R_syl2an(f"{ph}", f"{ps}", f"{th}", f"⋀{ps}{th}", f"{ch}", h1, h2, s11)
+
+def R_anim12ci(ph, ps, ch, th, h1, h2):
+    s11 = R_anim12i(f"{ch}", f"{th}", f"{ph}", f"{ps}", h2, h1)
+    return R_ancoms(f"{ch}", f"{ph}", f"⋀{th}{ps}", s11)
+
+def R_anim1i(ph, ps, ch, h1):
+    s6 = R_id(f"{ch}")
+    return R_anim12i(f"{ph}", f"{ps}", f"{ch}", f"{ch}", h1, s6)
+
+def R_anim1ci(ph, ps, ch, h1):
+    s6 = R_id(f"{ch}")
+    return R_anim12ci(f"{ph}", f"{ps}", f"{ch}", f"{ch}", h1, s6)
+
+def R_anim2i(ph, ps, ch, h1):
+    s5 = R_id(f"{ch}")
+    return R_anim12i(f"{ch}", f"{ch}", f"{ph}", f"{ps}", s5, h1)
+
+def R_anim12ii(ph, ps, ch, th, ta, h1, h2):
+    s18 = R_pm3_43(f"{ps}", f"{ch}", f"{ta}")
+    return R_syl2an(f"{ph}", f"→{ps}{ch}", f"→{ps}{ta}", f"→{ps}⋀{ch}{ta}", f"{th}", h1, h2, s18)
+
+def R_anim12dan(ph, ps, ch, th, ta, h1, h2):
+    s16 = R_ex(f"{ph}", f"{ps}", f"{ch}", h1)
+    s21 = R_ex(f"{ph}", f"{th}", f"{ta}", h2)
+    s22 = R_anim12d(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", s16, s21)
+    return R_imp(f"{ph}", f"⋀{ps}{th}", f"⋀{ch}{ta}", s22)
+
+def R_im2anan9(ph, ps, ch, th, ta, et, h1, h2):
+    s12 = R_adantrd(f"{ph}", f"{ps}", f"{ch}", f"{ta}", h1)
+    s18 = R_adantld(f"{th}", f"{ta}", f"{et}", f"{ps}", h2)
+    return R_anim12ii(f"{ph}", f"⋀{ps}{ta}", f"{ch}", f"{th}", f"{et}", s12, s18)
+
+def R_im2anan9r(ph, ps, ch, th, ta, et, h1, h2):
+    s17 = R_im2anan9(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", h1, h2)
+    return R_ancoms(f"{ph}", f"{th}", f"→⋀{ps}{ta}⋀{ch}{et}", s17)
+
+@Theorem(3, "pm3.45")
+def R_pm3_45(ph, ps, ch):
+    s8 = R_id(f"→{ph}{ps}")
+    return R_anim1d(f"→{ph}{ps}", f"{ph}", f"{ps}", f"{ch}", s8)
+
+def R_anbi2i(ph, ps, ch, h1):
+    s8 = R_a1i(f"↔{ph}{ps}", f"{ch}", h1)
+    return R_pm5_32i(f"{ch}", f"{ph}", f"{ps}", s8)
+
+def R_anbi1i(ph, ps, ch, h1):
+    s8 = R_a1i(f"↔{ph}{ps}", f"{ch}", h1)
+    return R_pm5_32ri(f"{ch}", f"{ph}", f"{ps}", s8)
+
+def R_anbi2ci(ph, ps, ch, h1):
+    s9 = R_anbi1i(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_biancomi(f"⋀{ph}{ch}", f"{ch}", f"{ps}", s9)
+
+def R_anbi1ci(ph, ps, ch, h1):
+    s9 = R_anbi2i(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_biancomi(f"⋀{ch}{ph}", f"{ps}", f"{ch}", s9)
+
+def R_bianbi(ph, ps, ch, th, h1, h2):
+    s12 = R_anbi1i(f"{ps}", f"{th}", f"{ch}", h2)
+    return R_bitri(f"{ph}", f"⋀{ps}{ch}", f"⋀{th}{ch}", h1, s12)
+
+def R_anbi12i(ph, ps, ch, th, h1, h2):
+    s10 = R_anbi2i(f"{ch}", f"{th}", f"{ph}", h2)
+    return R_bianbi(f"⋀{ph}{ch}", f"{ph}", f"{th}", f"{ps}", s10, h1)
+
+def R_anbi12ci(ph, ps, ch, th, h1, h2):
+    s11 = R_anbi12i(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h2)
+    return R_biancomi(f"⋀{ph}{ch}", f"{th}", f"{ps}", s11)
+
+def R_anbi2d(ph, ps, ch, th, h1):
+    s10 = R_a1d(f"{ph}", f"↔{ps}{ch}", f"{th}", h1)
+    return R_pm5_32d(f"{ph}", f"{th}", f"{ps}", f"{ch}", s10)
+
+def R_anbi1d(ph, ps, ch, th, h1):
+    s10 = R_a1d(f"{ph}", f"↔{ps}{ch}", f"{th}", h1)
+    return R_pm5_32rd(f"{ph}", f"{th}", f"{ps}", f"{ch}", s10)
+
+def R_anbi12d(ph, ps, ch, th, ta, h1, h2):
+    s15 = R_anbi1d(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    s21 = R_anbi2d(f"{ph}", f"{th}", f"{ta}", f"{ch}", h2)
+    return R_bitrd(f"{ph}", f"⋀{ps}{th}", f"⋀{ch}{th}", f"⋀{ch}{ta}", s15, s21)
+
+@Theorem(3, "anbi1")
+def R_anbi1(ph, ps, ch):
+    s8 = R_id(f"↔{ph}{ps}")
+    return R_anbi1d(f"↔{ph}{ps}", f"{ph}", f"{ps}", f"{ch}", s8)
+
+@Theorem(3, "anbi2")
+def R_anbi2(ph, ps, ch):
+    s8 = R_id(f"↔{ph}{ps}")
+    return R_anbi2d(f"↔{ph}{ps}", f"{ph}", f"{ps}", f"{ch}", s8)
+
+def R_anbi1cd(ph, ps, ch, th, h1):
+    s11 = R_anbi2d(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    return R_biancomd(f"{ph}", f"⋀{th}{ps}", f"{ch}", f"{th}", s11)
+
+@Theorem(4, "an2anr")
+def R_an2anr(ph, ps, ch, th):
+    s14 = R_ancom(f"{ph}", f"{ps}")
+    s17 = R_ancom(f"{ch}", f"{th}")
+    return R_anbi12i(f"⋀{ph}{ps}", f"⋀{ps}{ph}", f"⋀{ch}{th}", f"⋀{th}{ch}", s14, s17)
+
+@Theorem(4, "pm4.38")
+def R_pm4_38(ph, ps, ch, th):
+    s15 = R_simpl(f"↔{ph}{ch}", f"↔{ps}{th}")
+    s18 = R_simpr(f"↔{ph}{ch}", f"↔{ps}{th}")
+    return R_anbi12d(f"⋀↔{ph}{ch}↔{ps}{th}", f"{ph}", f"{ch}", f"{ps}", f"{th}", s15, s18)
+
+def R_bi2anan9(ph, ps, ch, th, ta, et, h1, h2):
+    s21 = R_pm4_38(f"{ps}", f"{ta}", f"{ch}", f"{et}")
+    return R_syl2an(f"{ph}", f"↔{ps}{ch}", f"↔{ta}{et}", f"↔⋀{ps}{ta}⋀{ch}{et}", f"{th}", h1, h2, s21)
+
+def R_bi2anan9r(ph, ps, ch, th, ta, et, h1, h2):
+    s17 = R_bi2anan9(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", h1, h2)
+    return R_ancoms(f"{ph}", f"{th}", f"↔⋀{ps}{ta}⋀{ch}{et}", s17)
+
+def R_bi2bian9(ph, ps, ch, th, ta, et, h1, h2):
+    s13 = R_adantr(f"{ph}", f"↔{ps}{ch}", f"{th}", h1)
+    s20 = R_adantl(f"{th}", f"↔{ta}{et}", f"{ph}", h2)
+    return R_bibi12d(f"⋀{ph}{th}", f"{ps}", f"{ch}", f"{ta}", f"{et}", s13, s20)
+
+def R_anbiim(ph, ps, ch, th, h1, h2):
+    s11 = R_adantr(f"{ph}", f"→{ch}{th}", f"{ps}", h1)
+    s18 = R_adantl(f"{ps}", f"→{th}{ch}", f"{ph}", h2)
+    return R_impbid(f"⋀{ph}{ps}", f"{ch}", f"{th}", s11, s18)
+
+def R_bianass(ph, ps, ch, th, h1):
+    s18 = R_anbi2i(f"{ph}", f"⋀{ps}{ch}", f"{th}", h1)
+    s22 = R_anass(f"{th}", f"{ps}", f"{ch}")
+    return R_bitr4i(f"⋀{th}{ph}", f"⋀{th}⋀{ps}{ch}", f"⋀⋀{th}{ps}{ch}", s18, s22)
+
+def R_bianassc(ph, ps, ch, th, h1):
+    s15 = R_bianass(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    s18 = R_ancom(f"{th}", f"{ps}")
+    return R_bianbi(f"⋀{th}{ph}", f"⋀{th}{ps}", f"{ch}", f"⋀{ps}{th}", s15, s18)
+
+@Theorem(3, "an21")
+def R_an21(ph, ps, ch):
+    s16 = R_biid(f"⋀{ph}{ch}")
+    s17 = R_bianassc(f"⋀{ph}{ch}", f"{ph}", f"{ch}", f"{ps}", s16)
+    return R_bicomi(f"⋀{ps}⋀{ph}{ch}", f"⋀⋀{ph}{ps}{ch}", s17)
+
+@Theorem(3, "an12")
+def R_an12(ph, ps, ch):
+    s16 = R_ancom(f"{ps}", f"{ch}")
+    s17 = R_bianass(f"⋀{ps}{ch}", f"{ch}", f"{ps}", f"{ph}", s16)
+    return R_biancomi(f"⋀{ph}⋀{ps}{ch}", f"{ps}", f"⋀{ph}{ch}", s17)
+
+@Theorem(3, "an32")
+def R_an32(ph, ps, ch):
+    s12 = R_an21(f"{ph}", f"{ps}", f"{ch}")
+    return R_biancomi(f"⋀⋀{ph}{ps}{ch}", f"⋀{ph}{ch}", f"{ps}", s12)
+
+@Theorem(3, "an13")
+def R_an13(ph, ps, ch):
+    s17 = R_an21(f"{ps}", f"{ph}", f"{ch}")
+    s20 = R_ancom(f"⋀{ps}{ph}", f"{ch}")
+    return R_bitr3i(f"⋀{ph}⋀{ps}{ch}", f"⋀⋀{ps}{ph}{ch}", f"⋀{ch}⋀{ps}{ph}", s17, s20)
+
+@Theorem(3, "an31")
+def R_an31(ph, ps, ch):
+    s23 = R_an13(f"{ph}", f"{ps}", f"{ch}")
+    s27 = R_anass(f"{ph}", f"{ps}", f"{ch}")
+    s31 = R_anass(f"{ch}", f"{ps}", f"{ph}")
+    return R_3bitr4i(f"⋀{ph}⋀{ps}{ch}", f"⋀{ch}⋀{ps}{ph}", f"⋀⋀{ph}{ps}{ch}", f"⋀⋀{ch}{ps}{ph}", s23, s27, s31)
+
+def R_an12s(ph, ps, ch, th, h1):
+    s14 = R_an12(f"{ps}", f"{ph}", f"{ch}")
+    return R_sylbi(f"⋀{ps}⋀{ph}{ch}", f"⋀{ph}⋀{ps}{ch}", f"{th}", s14, h1)
+
+def R_ancom2s(ph, ps, ch, th, h1):
+    s10 = R_pm3_22(f"{ch}", f"{ps}")
+    return R_sylan2(f"⋀{ch}{ps}", f"{ph}", f"⋀{ps}{ch}", f"{th}", s10, h1)
+
+def R_an13s(ph, ps, ch, th, h1):
+    s13 = R_exp32(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    s14 = R_com13(f"{ph}", f"{ps}", f"{ch}", f"{th}", s13)
+    return R_imp32(f"{ch}", f"{ps}", f"{ph}", f"{th}", s14)
+
+def R_an32s(ph, ps, ch, th, h1):
+    s14 = R_an32(f"{ph}", f"{ch}", f"{ps}")
+    return R_sylbi(f"⋀⋀{ph}{ch}{ps}", f"⋀⋀{ph}{ps}{ch}", f"{th}", s14, h1)
+
+def R_ancom1s(ph, ps, ch, th, h1):
+    s10 = R_pm3_22(f"{ps}", f"{ph}")
+    return R_sylan(f"⋀{ps}{ph}", f"⋀{ph}{ps}", f"{ch}", f"{th}", s10, h1)
+
+def R_an31s(ph, ps, ch, th, h1):
+    s13 = R_exp31(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    s14 = R_com13(f"{ph}", f"{ps}", f"{ch}", f"{th}", s13)
+    return R_imp31(f"{ch}", f"{ps}", f"{ph}", f"{th}", s14)
+
+def R_anass1rs(ph, ps, ch, th, h1):
+    s9 = R_anassrs(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    return R_an32s(f"{ph}", f"{ps}", f"{ch}", f"{th}", s9)
+
+@Theorem(4, "an4")
+def R_an4(ph, ps, ch, th):
+    s25 = R_anass(f"{ph}", f"{ps}", f"⋀{ch}{th}")
+    s33 = R_an12(f"{ps}", f"{ch}", f"{th}")
+    s34 = R_bianass(f"⋀{ps}⋀{ch}{th}", f"{ch}", f"⋀{ps}{th}", f"{ph}", s33)
+    return R_bitri(f"⋀⋀{ph}{ps}⋀{ch}{th}", f"⋀{ph}⋀{ps}⋀{ch}{th}", f"⋀⋀{ph}{ch}⋀{ps}{th}", s25, s34)
+
+@Theorem(4, "an42")
+def R_an42(ph, ps, ch, th):
+    s26 = R_an4(f"{ph}", f"{ps}", f"{ch}", f"{th}")
+    s32 = R_ancom(f"{ps}", f"{th}")
+    s33 = R_anbi2i(f"⋀{ps}{th}", f"⋀{th}{ps}", f"⋀{ph}{ch}", s32)
+    return R_bitri(f"⋀⋀{ph}{ps}⋀{ch}{th}", f"⋀⋀{ph}{ch}⋀{ps}{th}", f"⋀⋀{ph}{ch}⋀{th}{ps}", s26, s33)
+
+@Theorem(4, "an43")
+def R_an43(ph, ps, ch, th):
+    s18 = R_an42(f"{ph}", f"{th}", f"{ps}", f"{ch}")
+    return R_bicomi(f"⋀⋀{ph}{th}⋀{ps}{ch}", f"⋀⋀{ph}{ps}⋀{ch}{th}", s18)
+
+@Theorem(4, "an3")
+def R_an3(ph, ps, ch, th):
+    s17 = R_an43(f"{ph}", f"{ps}", f"{ch}", f"{th}")
+    return R_simplbi(f"⋀⋀{ph}{ps}⋀{ch}{th}", f"⋀{ph}{th}", f"⋀{ps}{ch}", s17)
+
+def R_an4s(ph, ps, ch, th, ta, h1):
+    s19 = R_an4(f"{ph}", f"{ch}", f"{ps}", f"{th}")
+    return R_sylbi(f"⋀⋀{ph}{ch}⋀{ps}{th}", f"⋀⋀{ph}{ps}⋀{ch}{th}", f"{ta}", s19, h1)
+
+def R_an42s(ph, ps, ch, th, ta, h1):
+    s12 = R_an4s(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", h1)
+    return R_ancom2s(f"⋀{ph}{ch}", f"{ps}", f"{th}", f"{ta}", s12)
+
+@Theorem(2, "anabs1")
+def R_anabs1(ph, ps):
+    s11 = R_simpl(f"{ph}", f"{ps}")
+    s12 = R_pm4_71i(f"⋀{ph}{ps}", f"{ph}", s11)
+    return R_bicomi(f"⋀{ph}{ps}", f"⋀⋀{ph}{ps}{ph}", s12)
+
+@Theorem(2, "anabs5")
+def R_anabs5(ph, ps):
+    s11 = R_ibar(f"{ph}", f"{ps}")
+    s12 = R_bicomd(f"{ph}", f"{ps}", f"⋀{ph}{ps}", s11)
+    return R_pm5_32i(f"{ph}", f"⋀{ph}{ps}", f"{ps}", s12)
+
+@Theorem(2, "anabs7")
+def R_anabs7(ph, ps):
+    s11 = R_simpr(f"{ph}", f"{ps}")
+    s12 = R_pm4_71ri(f"⋀{ph}{ps}", f"{ps}", s11)
+    return R_bicomi(f"⋀{ph}{ps}", f"⋀{ps}⋀{ph}{ps}", s12)
+
+def R_anabsan(ph, ps, ch, h1):
+    s7 = R_pm4_24(f"{ph}")
+    return R_sylanb(f"{ph}", f"⋀{ph}{ph}", f"{ps}", f"{ch}", s7, h1)
+
+def R_anabss1(ph, ps, ch, h1):
+    s8 = R_an32s(f"{ph}", f"{ps}", f"{ph}", f"{ch}", h1)
+    return R_anabsan(f"{ph}", f"{ps}", f"{ch}", s8)
+
+def R_anabss4(ph, ps, ch, h1):
+    s7 = R_anabss1(f"{ps}", f"{ph}", f"{ch}", h1)
+    return R_ancoms(f"{ps}", f"{ph}", f"{ch}", s7)
+
+def R_anabss5(ph, ps, ch, h1):
+    s8 = R_anassrs(f"{ph}", f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_anabsan(f"{ph}", f"{ps}", f"{ch}", s8)
+
+def R_anabsi5(ph, ps, ch, h1):
+    s7 = R_simpl(f"{ph}", f"{ps}")
+    return R_mpcom(f"{ph}", f"⋀{ph}{ps}", f"{ch}", s7, h1)
+
+def R_anabsi6(ph, ps, ch, h1):
+    s8 = R_ancomsd(f"{ph}", f"{ps}", f"{ph}", f"{ch}", h1)
+    return R_anabsi5(f"{ph}", f"{ps}", f"{ch}", s8)
+
+def R_anabsi7(ph, ps, ch, h1):
+    s7 = R_anabsi6(f"{ps}", f"{ph}", f"{ch}", h1)
+    return R_ancoms(f"{ps}", f"{ph}", f"{ch}", s7)
+
+def R_anabsi8(ph, ps, ch, h1):
+    s7 = R_anabsi5(f"{ps}", f"{ph}", f"{ch}", h1)
+    return R_ancoms(f"{ps}", f"{ph}", f"{ch}", s7)
+
+def R_anabss7(ph, ps, ch, h1):
+    s8 = R_anassrs(f"{ps}", f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_anabss4(f"{ph}", f"{ps}", f"{ch}", s8)
+
+def R_anabsan2(ph, ps, ch, h1):
+    s8 = R_an12s(f"{ph}", f"{ps}", f"{ps}", f"{ch}", h1)
+    return R_anabss7(f"{ph}", f"{ps}", f"{ch}", s8)
+
+def R_anabss3(ph, ps, ch, h1):
+    s8 = R_anasss(f"{ph}", f"{ps}", f"{ps}", f"{ch}", h1)
+    return R_anabsan2(f"{ph}", f"{ps}", f"{ch}", s8)
+
+@Theorem(3, "anandi")
+def R_anandi(ph, ps, ch):
+    s23 = R_anidm(f"{ph}")
+    s24 = R_anbi1i(f"⋀{ph}{ph}", f"{ph}", f"⋀{ps}{ch}", s23)
+    s29 = R_an4(f"{ph}", f"{ph}", f"{ps}", f"{ch}")
+    return R_bitr3i(f"⋀{ph}⋀{ps}{ch}", f"⋀⋀{ph}{ph}⋀{ps}{ch}", f"⋀⋀{ph}{ps}⋀{ph}{ch}", s24, s29)
+
+@Theorem(3, "anandir")
+def R_anandir(ph, ps, ch):
+    s23 = R_anidm(f"{ch}")
+    s24 = R_anbi2i(f"⋀{ch}{ch}", f"{ch}", f"⋀{ph}{ps}", s23)
+    s29 = R_an4(f"{ph}", f"{ps}", f"{ch}", f"{ch}")
+    return R_bitr3i(f"⋀⋀{ph}{ps}{ch}", f"⋀⋀{ph}{ps}⋀{ch}{ch}", f"⋀⋀{ph}{ch}⋀{ps}{ch}", s24, s29)
+
+def R_anandis(ph, ps, ch, th, h1):
+    s11 = R_an4s(f"{ph}", f"{ps}", f"{ph}", f"{ch}", f"{th}", h1)
+    return R_anabsan(f"{ph}", f"⋀{ps}{ch}", f"{th}", s11)
+
+def R_anandirs(ph, ps, ch, th, h1):
+    s11 = R_an4s(f"{ph}", f"{ch}", f"{ps}", f"{ch}", f"{th}", h1)
+    return R_anabsan2(f"⋀{ph}{ps}", f"{ch}", f"{th}", s11)
+
+def R_sylanl1(ph, ps, ch, th, ta, h1, h2):
+    s12 = R_anim1i(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_sylan(f"⋀{ph}{ch}", f"⋀{ps}{ch}", f"{th}", f"{ta}", s12, h2)
+
+def R_sylanl2(ph, ps, ch, th, ta, h1, h2):
+    s9 = R_adantl(f"{ph}", f"{ch}", f"{ps}", h1)
+    return R_syldanl(f"{ps}", f"{ph}", f"{ch}", f"{th}", f"{ta}", s9, h2)
+
+def R_sylanr1(ph, ps, ch, th, ta, h1, h2):
+    s12 = R_anim1i(f"{ph}", f"{ch}", f"{th}", h1)
+    return R_sylan2(f"⋀{ph}{th}", f"{ps}", f"⋀{ch}{th}", f"{ta}", s12, h2)
+
+def R_sylanr2(ph, ps, ch, th, ta, h1, h2):
+    s12 = R_anim2i(f"{ph}", f"{th}", f"{ch}", h1)
+    return R_sylan2(f"⋀{ch}{ph}", f"{ps}", f"⋀{ch}{th}", f"{ta}", s12, h2)
+
+def R_syl6an(ph, ps, ch, th, ta, h1, h2, h3):
+    s11 = R_ex(f"{ps}", f"{th}", f"{ta}", h3)
+    return R_sylsyld(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", h1, h2, s11)
+
+def R_syl2an2r(ph, ps, ch, th, ta, h1, h2, h3):
+    s11 = R_sylan(f"{ph}", f"{ps}", f"{th}", f"{ta}", h1, h3)
+    return R_syldan(f"{ph}", f"{ch}", f"{th}", f"{ta}", h2, s11)
+
+def R_syl2an2(ph, ps, ch, th, ta, h1, h2, h3):
+    s10 = R_adantl(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_syl2anc(f"⋀{ch}{ph}", f"{ps}", f"{th}", f"{ta}", s10, h2, h3)
+
+def R_mpdan(ph, ps, ch, h1, h2):
+    s5 = R_id(f"{ph}")
+    return R_syl2anc(f"{ph}", f"{ph}", f"{ps}", f"{ch}", s5, h1, h2)
+
+def R_mpancom(ph, ps, ch, h1, h2):
+    s6 = R_id(f"{ps}")
+    return R_syl2anc(f"{ps}", f"{ph}", f"{ps}", f"{ch}", h1, s6, h2)
+
+def R_mpidan(ph, ps, ch, th, h1, h2):
+    s9 = R_adantr(f"{ph}", f"{ch}", f"{ps}", h1)
+    return R_mpdan(f"⋀{ph}{ps}", f"{ch}", f"{th}", s9, h2)
+
+def R_mpan(ph, ps, ch, h1, h2):
+    s6 = R_a1i(f"{ph}", f"{ps}", h1)
+    return R_mpancom(f"{ph}", f"{ps}", f"{ch}", s6, h2)
+
+def R_mpan2(ph, ps, ch, h1, h2):
+    s6 = R_a1i(f"{ps}", f"{ph}", h1)
+    return R_mpdan(f"{ph}", f"{ps}", f"{ch}", s6, h2)
+
+def R_mp2an(ph, ps, ch, h1, h2, h3):
+    s8 = R_mpan(f"{ph}", f"{ps}", f"{ch}", h1, h3)
+    return R_ax_mp(f"{ps}", f"{ch}", h2, s8)
+
+def R_mp4an(ph, ps, ch, th, ta, h1, h2, h3, h4, h5):
+    s11 = R_pm3_2i(f"{ph}", f"{ps}", h1, h2)
+    s16 = R_pm3_2i(f"{ch}", f"{th}", h3, h4)
+    return R_mp2an(f"⋀{ph}{ps}", f"⋀{ch}{th}", f"{ta}", s11, s16, h5)
+
+def R_mpan2d(ph, ps, ch, th, h1, h2):
+    s10 = R_expd(f"{ph}", f"{ps}", f"{ch}", f"{th}", h2)
+    return R_mpid(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, s10)
+
+def R_mpand(ph, ps, ch, th, h1, h2):
+    s10 = R_ancomsd(f"{ph}", f"{ps}", f"{ch}", f"{th}", h2)
+    return R_mpan2d(f"{ph}", f"{ch}", f"{ps}", f"{th}", h1, s10)
+
+def R_mpani(ph, ps, ch, th, h1, h2):
+    s7 = R_a1i(f"{ps}", f"{ph}", h1)
+    return R_mpand(f"{ph}", f"{ps}", f"{ch}", f"{th}", s7, h2)
+
+def R_mpan2i(ph, ps, ch, th, h1, h2):
+    s7 = R_a1i(f"{ch}", f"{ph}", h1)
+    return R_mpan2d(f"{ph}", f"{ps}", f"{ch}", f"{th}", s7, h2)
+
+def R_mp2ani(ph, ps, ch, th, h1, h2, h3):
+    s10 = R_mpani(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h3)
+    return R_mpi(f"{ph}", f"{ch}", f"{th}", h2, s10)
+
+def R_mp2and(ph, ps, ch, th, h1, h2, h3):
+    s10 = R_mpand(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h3)
+    return R_mpd(f"{ph}", f"{ch}", f"{th}", h2, s10)
+
+def R_mpanl1(ph, ps, ch, th, h1, h2):
+    s9 = R_jctl(f"{ps}", f"{ph}", h1)
+    return R_sylan(f"{ps}", f"⋀{ph}{ps}", f"{ch}", f"{th}", s9, h2)
+
+def R_mpanl2(ph, ps, ch, th, h1, h2):
+    s9 = R_jctr(f"{ph}", f"{ps}", h1)
+    return R_sylan(f"{ph}", f"⋀{ph}{ps}", f"{ch}", f"{th}", s9, h2)
+
+def R_mpanl12(ph, ps, ch, th, h1, h2, h3):
+    s10 = R_mpanl1(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h3)
+    return R_mpan(f"{ps}", f"{ch}", f"{th}", h2, s10)
+
+def R_mpanr1(ph, ps, ch, th, h1, h2):
+    s10 = R_anassrs(f"{ph}", f"{ps}", f"{ch}", f"{th}", h2)
+    return R_mpanl2(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, s10)
+
+def R_mpanr2(ph, ps, ch, th, h1, h2):
+    s9 = R_jctr(f"{ps}", f"{ch}", h1)
+    return R_sylan2(f"{ps}", f"{ph}", f"⋀{ps}{ch}", f"{th}", s9, h2)
+
+def R_mpanr12(ph, ps, ch, th, h1, h2, h3):
+    s10 = R_mpanr1(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1, h3)
+    return R_mpan2(f"{ph}", f"{ch}", f"{th}", h2, s10)
+
+def R_mpanlr1(ph, ps, ch, th, ta, h1, h2):
+    s10 = R_jctl(f"{ch}", f"{ps}", h1)
+    return R_sylanl2(f"{ch}", f"{ph}", f"⋀{ps}{ch}", f"{th}", f"{ta}", s10, h2)
+
+def R_mpbirand(ph, ps, ch, th, h1, h2):
+    s11 = R_biantrurd(f"{ph}", f"{ch}", f"{th}", h1)
+    return R_bitr4d(f"{ph}", f"{ps}", f"⋀{ch}{th}", f"{th}", h2, s11)
+
+def R_mpbiran2d(ph, ps, ch, th, h1, h2):
+    s10 = R_biancomd(f"{ph}", f"{ps}", f"{th}", f"{ch}", h2)
+    return R_mpbirand(f"{ph}", f"{ps}", f"{th}", f"{ch}", h1, s10)
+
+def R_mpbiran(ph, ps, ch, h1, h2):
+    s9 = R_biantrur(f"{ps}", f"{ch}", h1)
+    return R_bitr4i(f"{ph}", f"⋀{ps}{ch}", f"{ch}", h2, s9)
+
+def R_mpbiran2(ph, ps, ch, h1, h2):
+    s8 = R_biancomi(f"{ph}", f"{ch}", f"{ps}", h2)
+    return R_mpbiran(f"{ph}", f"{ch}", f"{ps}", h1, s8)
+
+def R_mpbir2an(ph, ps, ch, h1, h2, h3):
+    s8 = R_mpbiran(f"{ph}", f"{ps}", f"{ch}", h1, h3)
+    return R_mpbir(f"{ph}", f"{ch}", h2, s8)
+
+def R_mpbi2and(ph, ps, ch, th, h1, h2, h3):
+    s10 = R_jca(f"{ph}", f"{ps}", f"{ch}", h1, h2)
+    return R_mpbid(f"{ph}", f"⋀{ps}{ch}", f"{th}", s10, h3)
+
+def R_mpbir2and(ph, ps, ch, th, h1, h2, h3):
+    s10 = R_jca(f"{ph}", f"{ch}", f"{th}", h1, h2)
+    return R_mpbird(f"{ph}", f"{ps}", f"⋀{ch}{th}", s10, h3)
+
+def R_adantll(ph, ps, ch, th, h1):
+    s8 = R_simpr(f"{th}", f"{ph}")
+    return R_sylan(f"⋀{th}{ph}", f"{ph}", f"{ps}", f"{ch}", s8, h1)
+
+def R_adantlr(ph, ps, ch, th, h1):
+    s8 = R_simpl(f"{ph}", f"{th}")
+    return R_sylan(f"⋀{ph}{th}", f"{ph}", f"{ps}", f"{ch}", s8, h1)
+
+def R_adantrl(ph, ps, ch, th, h1):
+    s8 = R_simpr(f"{th}", f"{ps}")
+    return R_sylan2(f"⋀{th}{ps}", f"{ph}", f"{ps}", f"{ch}", s8, h1)
+
+def R_adantrr(ph, ps, ch, th, h1):
+    s8 = R_simpl(f"{ps}", f"{th}")
+    return R_sylan2(f"⋀{ps}{th}", f"{ph}", f"{ps}", f"{ch}", s8, h1)
+
+def R_adantlll(ph, ps, ch, th, ta, h1):
+    s9 = R_simpr(f"{ta}", f"{ph}")
+    return R_sylanl1(f"⋀{ta}{ph}", f"{ph}", f"{ps}", f"{ch}", f"{th}", s9, h1)
+
+def R_adantllr(ph, ps, ch, th, ta, h1):
+    s9 = R_simpl(f"{ph}", f"{ta}")
+    return R_sylanl1(f"⋀{ph}{ta}", f"{ph}", f"{ps}", f"{ch}", f"{th}", s9, h1)
+
+def R_adantlrl(ph, ps, ch, th, ta, h1):
+    s9 = R_simpr(f"{ta}", f"{ps}")
+    return R_sylanl2(f"⋀{ta}{ps}", f"{ph}", f"{ps}", f"{ch}", f"{th}", s9, h1)
+
+def R_adantlrr(ph, ps, ch, th, ta, h1):
+    s9 = R_simpl(f"{ps}", f"{ta}")
+    return R_sylanl2(f"⋀{ps}{ta}", f"{ph}", f"{ps}", f"{ch}", f"{th}", s9, h1)
+
+def R_adantrll(ph, ps, ch, th, ta, h1):
+    s9 = R_simpr(f"{ta}", f"{ps}")
+    return R_sylanr1(f"⋀{ta}{ps}", f"{ph}", f"{ps}", f"{ch}", f"{th}", s9, h1)
+
+def R_adantrlr(ph, ps, ch, th, ta, h1):
+    s9 = R_simpl(f"{ps}", f"{ta}")
+    return R_sylanr1(f"⋀{ps}{ta}", f"{ph}", f"{ps}", f"{ch}", f"{th}", s9, h1)
+
+def R_adantrrl(ph, ps, ch, th, ta, h1):
+    s9 = R_simpr(f"{ta}", f"{ch}")
+    return R_sylanr2(f"⋀{ta}{ch}", f"{ph}", f"{ps}", f"{ch}", f"{th}", s9, h1)
+
+def R_adantrrr(ph, ps, ch, th, ta, h1):
+    s9 = R_simpl(f"{ch}", f"{ta}")
+    return R_sylanr2(f"⋀{ch}{ta}", f"{ph}", f"{ps}", f"{ch}", f"{th}", s9, h1)
+
+def R_ad2antrr(ph, ps, ch, th, h1):
+    s8 = R_adantr(f"{ph}", f"{ps}", f"{th}", h1)
+    return R_adantlr(f"{ph}", f"{th}", f"{ps}", f"{ch}", s8)
+
+def R_ad2antlr(ph, ps, ch, th, h1):
+    s8 = R_adantr(f"{ph}", f"{ps}", f"{th}", h1)
+    return R_adantll(f"{ph}", f"{th}", f"{ps}", f"{ch}", s8)
+
+def R_ad2antrl(ph, ps, ch, th, h1):
+    s8 = R_adantl(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_adantrr(f"{ch}", f"{ph}", f"{ps}", f"{th}", s8)
+
+def R_ad2antll(ph, ps, ch, th, h1):
+    s9 = R_adantl(f"{ph}", f"{ps}", f"{th}", h1)
+    return R_adantl(f"⋀{th}{ph}", f"{ps}", f"{ch}", s9)
+
+def R_ad3antrrr(ph, ps, ch, th, ta, h1):
+    s10 = R_adantr(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad2antrr(f"⋀{ph}{ch}", f"{ps}", f"{th}", f"{ta}", s10)
+
+def R_ad3antlr(ph, ps, ch, th, ta, h1):
+    s10 = R_adantl(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad2antrr(f"⋀{ch}{ph}", f"{ps}", f"{th}", f"{ta}", s10)
+
+def R_ad4antr(ph, ps, ch, th, ta, et, h1):
+    s11 = R_adantr(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad3antrrr(f"⋀{ph}{ch}", f"{ps}", f"{th}", f"{ta}", f"{et}", s11)
+
+def R_ad4antlr(ph, ps, ch, th, ta, et, h1):
+    s11 = R_adantl(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad3antrrr(f"⋀{ch}{ph}", f"{ps}", f"{th}", f"{ta}", f"{et}", s11)
+
+def R_ad5antr(ph, ps, ch, th, ta, et, ze, h1):
+    s12 = R_adantr(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad4antr(f"⋀{ph}{ch}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", s12)
+
+def R_ad5antlr(ph, ps, ch, th, ta, et, ze, h1):
+    s12 = R_adantl(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad4antr(f"⋀{ch}{ph}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", s12)
+
+def R_ad6antr(ph, ps, ch, th, ta, et, ze, si, h1):
+    s13 = R_adantr(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad5antr(f"⋀{ph}{ch}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", s13)
+
+def R_ad6antlr(ph, ps, ch, th, ta, et, ze, si, h1):
+    s13 = R_adantl(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad5antr(f"⋀{ch}{ph}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", s13)
+
+def R_ad7antr(ph, ps, ch, th, ta, et, ze, si, rh, h1):
+    s14 = R_adantr(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad6antr(f"⋀{ph}{ch}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", s14)
+
+def R_ad7antlr(ph, ps, ch, th, ta, et, ze, si, rh, h1):
+    s14 = R_adantl(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad6antr(f"⋀{ch}{ph}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", s14)
+
+def R_ad8antr(ph, ps, ch, th, ta, et, ze, si, rh, mu, h1):
+    s15 = R_adantr(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad7antr(f"⋀{ph}{ch}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", s15)
+
+def R_ad8antlr(ph, ps, ch, th, ta, et, ze, si, rh, mu, h1):
+    s15 = R_adantl(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad7antr(f"⋀{ch}{ph}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", s15)
+
+def R_ad9antr(ph, ps, ch, th, ta, et, ze, si, rh, mu, la, h1):
+    s16 = R_adantr(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad8antr(f"⋀{ph}{ch}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", f"{la}", s16)
+
+def R_ad9antlr(ph, ps, ch, th, ta, et, ze, si, rh, mu, la, h1):
+    s16 = R_adantl(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad8antr(f"⋀{ch}{ph}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", f"{la}", s16)
+
+def R_ad10antr(ph, ps, ch, th, ta, et, ze, si, rh, mu, la, ka, h1):
+    s17 = R_adantr(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad9antr(f"⋀{ph}{ch}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", f"{la}", f"{ka}", s17)
+
+def R_ad10antlr(ph, ps, ch, th, ta, et, ze, si, rh, mu, la, ka, h1):
+    s17 = R_adantl(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_ad9antr(f"⋀{ch}{ph}", f"{ps}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", f"{la}", f"{ka}", s17)
+
+def R_ad2ant2l(ph, ps, ch, th, ta, h1):
+    s11 = R_adantrl(f"{ph}", f"{ps}", f"{ch}", f"{ta}", h1)
+    return R_adantll(f"{ph}", f"⋀{ta}{ps}", f"{ch}", f"{th}", s11)
+
+def R_ad2ant2r(ph, ps, ch, th, ta, h1):
+    s11 = R_adantrr(f"{ph}", f"{ps}", f"{ch}", f"{ta}", h1)
+    return R_adantlr(f"{ph}", f"⋀{ps}{ta}", f"{ch}", f"{th}", s11)
+
+def R_ad2ant2lr(ph, ps, ch, th, ta, h1):
+    s11 = R_adantrr(f"{ph}", f"{ps}", f"{ch}", f"{ta}", h1)
+    return R_adantll(f"{ph}", f"⋀{ps}{ta}", f"{ch}", f"{th}", s11)
+
+def R_ad2ant2rl(ph, ps, ch, th, ta, h1):
+    s11 = R_adantrl(f"{ph}", f"{ps}", f"{ch}", f"{ta}", h1)
+    return R_adantlr(f"{ph}", f"⋀{ta}{ps}", f"{ch}", f"{th}", s11)
+
+def R_adantl3r(ph, ps, ch, th, ta, et, h1):
+    s17 = R_id(f"⋀{ph}{ps}")
+    s18 = R_adantlr(f"{ph}", f"{ps}", f"⋀{ph}{ps}", f"{et}", s17)
+    return R_sylanl1(f"⋀⋀{ph}{et}{ps}", f"⋀{ph}{ps}", f"{ch}", f"{th}", f"{ta}", s18, h1)
+
+def R_ad4ant13(ph, ps, ch, th, ta, h1):
+    s11 = R_adantr(f"⋀{ph}{ps}", f"{ch}", f"{ta}", h1)
+    return R_adantllr(f"{ph}", f"{ps}", f"{ta}", f"{ch}", f"{th}", s11)
+
+def R_ad4ant14(ph, ps, ch, th, ta, h1):
+    s11 = R_adantlr(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    return R_adantlr(f"⋀{ph}{th}", f"{ps}", f"{ch}", f"{ta}", s11)
+
+def R_ad4ant23(ph, ps, ch, th, ta, h1):
+    s11 = R_adantr(f"⋀{ph}{ps}", f"{ch}", f"{ta}", h1)
+    return R_adantlll(f"{ph}", f"{ps}", f"{ta}", f"{ch}", f"{th}", s11)
+
+def R_ad4ant24(ph, ps, ch, th, ta, h1):
+    s10 = R_adantlr(f"{ph}", f"{ps}", f"{ch}", f"{ta}", h1)
+    return R_adantlll(f"{ph}", f"{ta}", f"{ps}", f"{ch}", f"{th}", s10)
+
+def R_adantl4r(ph, ps, ch, th, ta, et, ze, h1):
+    s29 = R_ex(f"⋀⋀⋀{ph}{ch}{th}{ta}", f"{et}", f"{ze}", h1)
+    s30 = R_adantl3r(f"{ph}", f"{ch}", f"{th}", f"{ta}", f"→{et}{ze}", f"{ps}", s29)
+    return R_imp(f"⋀⋀⋀⋀{ph}{ps}{ch}{th}{ta}", f"{et}", f"{ze}", s30)
+
+def R_ad5ant12(ph, ps, ch, th, ta, et, h1):
+    return R_ad3antrrr(f"⋀{ph}{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", h1)
+
+def R_ad5ant13(ph, ps, ch, th, ta, et, h1):
+    s13 = R_adantlr(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    return R_ad2antrr(f"⋀⋀{ph}{th}{ps}", f"{ch}", f"{ta}", f"{et}", s13)
+
+def R_ad5ant14(ph, ps, ch, th, ta, et, h1):
+    s12 = R_adantlr(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    return R_ad4ant13(f"⋀{ph}{th}", f"{ps}", f"{ch}", f"{ta}", f"{et}", s12)
+
+def R_ad5ant15(ph, ps, ch, th, ta, et, h1):
+    s12 = R_adantlr(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    return R_ad4ant14(f"⋀{ph}{th}", f"{ps}", f"{ch}", f"{ta}", f"{et}", s12)
+
+def R_ad5ant23(ph, ps, ch, th, ta, et, h1):
+    s13 = R_adantll(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    return R_ad2antrr(f"⋀⋀{th}{ph}{ps}", f"{ch}", f"{ta}", f"{et}", s13)
+
+def R_ad5ant24(ph, ps, ch, th, ta, et, h1):
+    s12 = R_adantll(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    return R_ad4ant13(f"⋀{th}{ph}", f"{ps}", f"{ch}", f"{ta}", f"{et}", s12)
+
+def R_ad5ant25(ph, ps, ch, th, ta, et, h1):
+    s12 = R_adantll(f"{ph}", f"{ps}", f"{ch}", f"{th}", h1)
+    return R_ad4ant14(f"⋀{th}{ph}", f"{ps}", f"{ch}", f"{ta}", f"{et}", s12)
+
+def R_adantl5r(ph, ps, ch, th, ta, et, ze, si, h1):
+    s34 = R_ex(f"⋀⋀⋀⋀{ph}{ch}{th}{ta}{et}", f"{ze}", f"{si}", h1)
+    s35 = R_adantl4r(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"→{ze}{si}", s34)
+    return R_imp(f"⋀⋀⋀⋀⋀{ph}{ps}{ch}{th}{ta}{et}", f"{ze}", f"{si}", s35)
+
+def R_adantl6r(ph, ps, ch, th, ta, et, ze, si, rh, h1):
+    s39 = R_ex(f"⋀⋀⋀⋀⋀{ph}{ch}{th}{ta}{et}{ze}", f"{si}", f"{rh}", h1)
+    s40 = R_adantl5r(f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"→{si}{rh}", s39)
+    return R_imp(f"⋀⋀⋀⋀⋀⋀{ph}{ps}{ch}{th}{ta}{et}{ze}", f"{si}", f"{rh}", s40)
+
+@Theorem(3, "pm3.33")
+def R_pm3_33(ph, ps, ch):
+    s12 = R_imim1(f"{ph}", f"{ps}", f"{ch}")
+    return R_imp(f"→{ph}{ps}", f"→{ps}{ch}", f"→{ph}{ch}", s12)
+
+@Theorem(3, "pm3.34")
+def R_pm3_34(ph, ps, ch):
+    s12 = R_imim2(f"{ps}", f"{ch}", f"{ph}")
+    return R_imp(f"→{ps}{ch}", f"→{ph}{ps}", f"→{ph}{ch}", s12)
+
+@Theorem(3, "simpll")
+def R_simpll(ph, ps, ch):
+    s5 = R_id(f"{ph}")
+    return R_ad2antrr(f"{ph}", f"{ph}", f"{ps}", f"{ch}", s5)
+
+def R_simplld(ph, ps, ch, th, h1):
+    s9 = R_simpld(f"{ph}", f"⋀{ps}{ch}", f"{th}", h1)
+    return R_simpld(f"{ph}", f"{ps}", f"{ch}", s9)
+
+@Theorem(3, "simplr")
+def R_simplr(ph, ps, ch):
+    s5 = R_id(f"{ps}")
+    return R_ad2antlr(f"{ps}", f"{ps}", f"{ph}", f"{ch}", s5)
+
+def R_simplrd(ph, ps, ch, th, h1):
+    s9 = R_simpld(f"{ph}", f"⋀{ps}{ch}", f"{th}", h1)
+    return R_simprd(f"{ph}", f"{ps}", f"{ch}", s9)
+
+@Theorem(3, "simprl")
+def R_simprl(ph, ps, ch):
+    s5 = R_id(f"{ps}")
+    return R_ad2antrl(f"{ps}", f"{ps}", f"{ph}", f"{ch}", s5)
+
+def R_simprld(ph, ps, ch, th, h1):
+    s9 = R_simprd(f"{ph}", f"{ps}", f"⋀{ch}{th}", h1)
+    return R_simpld(f"{ph}", f"{ch}", f"{th}", s9)
+
+@Theorem(3, "simprr")
+def R_simprr(ph, ps, ch):
+    s5 = R_id(f"{ch}")
+    return R_ad2antll(f"{ch}", f"{ch}", f"{ph}", f"{ps}", s5)
+
+def R_simprrd(ph, ps, ch, th, h1):
+    s9 = R_simprd(f"{ph}", f"{ps}", f"⋀{ch}{th}", h1)
+    return R_simprd(f"{ph}", f"{ch}", f"{th}", s9)
+
+@Theorem(4, "simplll")
+def R_simplll(ph, ps, ch, th):
+    s6 = R_id(f"{ph}")
+    return R_ad3antrrr(f"{ph}", f"{ph}", f"{ps}", f"{ch}", f"{th}", s6)
+
+@Theorem(4, "simpllr")
+def R_simpllr(ph, ps, ch, th):
+    s6 = R_id(f"{ps}")
+    return R_ad3antlr(f"{ps}", f"{ps}", f"{ph}", f"{ch}", f"{th}", s6)
+
+@Theorem(4, "simplrl")
+def R_simplrl(ph, ps, ch, th):
+    s8 = R_simpl(f"{ps}", f"{ch}")
+    return R_ad2antlr(f"⋀{ps}{ch}", f"{ps}", f"{ph}", f"{th}", s8)
+
+@Theorem(4, "simplrr")
+def R_simplrr(ph, ps, ch, th):
+    s8 = R_simpr(f"{ps}", f"{ch}")
+    return R_ad2antlr(f"⋀{ps}{ch}", f"{ch}", f"{ph}", f"{th}", s8)
+
+@Theorem(4, "simprll")
+def R_simprll(ph, ps, ch, th):
+    s8 = R_simpl(f"{ps}", f"{ch}")
+    return R_ad2antrl(f"⋀{ps}{ch}", f"{ps}", f"{ph}", f"{th}", s8)
+
+@Theorem(4, "simprlr")
+def R_simprlr(ph, ps, ch, th):
+    s8 = R_simpr(f"{ps}", f"{ch}")
+    return R_ad2antrl(f"⋀{ps}{ch}", f"{ch}", f"{ph}", f"{th}", s8)
+
+@Theorem(4, "simprrl")
+def R_simprrl(ph, ps, ch, th):
+    s8 = R_simpl(f"{ch}", f"{th}")
+    return R_ad2antll(f"⋀{ch}{th}", f"{ch}", f"{ph}", f"{ps}", s8)
+
+@Theorem(4, "simprrr")
+def R_simprrr(ph, ps, ch, th):
+    s8 = R_simpr(f"{ch}", f"{th}")
+    return R_ad2antll(f"⋀{ch}{th}", f"{th}", f"{ph}", f"{ps}", s8)
+
+@Theorem(5, "simp-4l")
+def R_simp_4l(ph, ps, ch, th, ta):
+    s7 = R_id(f"{ph}")
+    return R_ad4antr(f"{ph}", f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", s7)
+
+@Theorem(5, "simp-4r")
+def R_simp_4r(ph, ps, ch, th, ta):
+    s7 = R_id(f"{ps}")
+    return R_ad4antlr(f"{ps}", f"{ps}", f"{ph}", f"{ch}", f"{th}", f"{ta}", s7)
+
+@Theorem(6, "simp-5l")
+def R_simp_5l(ph, ps, ch, th, ta, et):
+    s8 = R_id(f"{ph}")
+    return R_ad5antr(f"{ph}", f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", s8)
+
+@Theorem(6, "simp-5r")
+def R_simp_5r(ph, ps, ch, th, ta, et):
+    s8 = R_id(f"{ps}")
+    return R_ad5antlr(f"{ps}", f"{ps}", f"{ph}", f"{ch}", f"{th}", f"{ta}", f"{et}", s8)
+
+@Theorem(7, "simp-6l")
+def R_simp_6l(ph, ps, ch, th, ta, et, ze):
+    s9 = R_id(f"{ph}")
+    return R_ad6antr(f"{ph}", f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", s9)
+
+@Theorem(7, "simp-6r")
+def R_simp_6r(ph, ps, ch, th, ta, et, ze):
+    s9 = R_id(f"{ps}")
+    return R_ad6antlr(f"{ps}", f"{ps}", f"{ph}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", s9)
+
+@Theorem(8, "simp-7l")
+def R_simp_7l(ph, ps, ch, th, ta, et, ze, si):
+    s10 = R_id(f"{ph}")
+    return R_ad7antr(f"{ph}", f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", s10)
+
+@Theorem(8, "simp-7r")
+def R_simp_7r(ph, ps, ch, th, ta, et, ze, si):
+    s10 = R_id(f"{ps}")
+    return R_ad7antlr(f"{ps}", f"{ps}", f"{ph}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", s10)
+
+@Theorem(9, "simp-8l")
+def R_simp_8l(ph, ps, ch, th, ta, et, ze, si, rh):
+    s11 = R_id(f"{ph}")
+    return R_ad8antr(f"{ph}", f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", s11)
+
+@Theorem(9, "simp-8r")
+def R_simp_8r(ph, ps, ch, th, ta, et, ze, si, rh):
+    s11 = R_id(f"{ps}")
+    return R_ad8antlr(f"{ps}", f"{ps}", f"{ph}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", s11)
+
+@Theorem(10, "simp-9l")
+def R_simp_9l(ph, ps, ch, th, ta, et, ze, si, rh, mu):
+    s12 = R_id(f"{ph}")
+    return R_ad9antr(f"{ph}", f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", s12)
+
+@Theorem(10, "simp-9r")
+def R_simp_9r(ph, ps, ch, th, ta, et, ze, si, rh, mu):
+    s12 = R_id(f"{ps}")
+    return R_ad9antlr(f"{ps}", f"{ps}", f"{ph}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", s12)
+
+@Theorem(11, "simp-10l")
+def R_simp_10l(ph, ps, ch, th, ta, et, ze, si, rh, mu, la):
+    s13 = R_id(f"{ph}")
+    return R_ad10antr(f"{ph}", f"{ph}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", f"{la}", s13)
+
+@Theorem(11, "simp-10r")
+def R_simp_10r(ph, ps, ch, th, ta, et, ze, si, rh, mu, la):
+    s13 = R_id(f"{ps}")
+    return R_ad10antlr(f"{ps}", f"{ps}", f"{ph}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", f"{la}", s13)
+
+@Theorem(12, "simp-11l")
+def R_simp_11l(ph, ps, ch, th, ta, et, ze, si, rh, mu, la, ka):
+    s16 = R_simpl(f"{ph}", f"{ps}")
+    return R_ad10antr(f"⋀{ph}{ps}", f"{ph}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", f"{la}", f"{ka}", s16)
+
+@Theorem(12, "simp-11r")
+def R_simp_11r(ph, ps, ch, th, ta, et, ze, si, rh, mu, la, ka):
+    s16 = R_simpr(f"{ph}", f"{ps}")
+    return R_ad10antr(f"⋀{ph}{ps}", f"{ps}", f"{ch}", f"{th}", f"{ta}", f"{et}", f"{ze}", f"{si}", f"{rh}", f"{mu}", f"{la}", f"{ka}", s16)
+
+def R_pm2_01da(ph, ps, h1):
+    s7 = R_ex(f"{ph}", f"{ps}", f"¬{ps}", h1)
+    return R_pm2_01d(f"{ph}", f"{ps}", s7)
+
+def R_pm2_18da(ph, ps, h1):
+    s7 = R_ex(f"{ph}", f"¬{ps}", f"{ps}", h1)
+    return R_pm2_18d(f"{ph}", f"{ps}", s7)
+
+def R_impbida(ph, ps, ch, h1, h2):
+    s7 = R_ex(f"{ph}", f"{ps}", f"{ch}", h1)
+    s12 = R_ex(f"{ph}", f"{ch}", f"{ps}", h2)
+    return R_impbid(f"{ph}", f"{ps}", f"{ch}", s7, s12)
+
+def R_pm5_21nd(ph, ps, ch, th, h1, h2, h3):
+    s8 = R_ex(f"{ph}", f"{ps}", f"{th}", h1)
+    s13 = R_ex(f"{ph}", f"{ch}", f"{th}", h2)
+    s21 = R_a1i(f"→{th}↔{ps}{ch}", f"{ph}", h3)
+    return R_pm5_21ndd(f"{ph}", f"{th}", f"{ps}", f"{ch}", s8, s13, s21)
+
+@Theorem(2, "pm3.35")
+def R_pm3_35(ph, ps):
+    s7 = R_pm2_27(f"{ph}", f"{ps}")
+    return R_imp(f"{ph}", f"→{ph}{ps}", f"{ps}", s7)
+
+def R_pm5_74da(ph, ps, ch, th, h1):
+    s10 = R_ex(f"{ph}", f"{ps}", f"↔{ch}{th}", h1)
+    return R_pm5_74d(f"{ph}", f"{ps}", f"{ch}", f"{th}", s10)
+
+@Theorem(3, "bitr")
+def R_bitr(ph, ps, ch):
+    s12 = R_bibi1(f"{ph}", f"{ps}", f"{ch}")
+    return R_biimpar(f"↔{ph}{ps}", f"↔{ph}{ch}", f"↔{ps}{ch}", s12)
+
+@Theorem(3, "biantr")
+def R_biantr(ph, ps, ch):
+    s15 = R_id(f"↔{ch}{ps}")
+    s16 = R_bibi2d(f"↔{ch}{ps}", f"{ch}", f"{ps}", f"{ph}", s15)
+    return R_biimparc(f"↔{ch}{ps}", f"↔{ph}{ch}", f"↔{ph}{ps}", s16)
+
+@Theorem(3, "pm4.14")
+def R_pm4_14(ph, ps, ch):
+    s31 = R_con34b(f"{ps}", f"{ch}")
+    s32 = R_imbi2i(f"→{ps}{ch}", f"→¬{ch}¬{ps}", f"{ph}", s31)
+    s36 = R_impexp(f"{ph}", f"{ps}", f"{ch}")
+    s40 = R_impexp(f"{ph}", f"¬{ch}", f"¬{ps}")
+    return R_3bitr4i(f"→{ph}→{ps}{ch}", f"→{ph}→¬{ch}¬{ps}", f"→⋀{ph}{ps}{ch}", f"→⋀{ph}¬{ch}¬{ps}", s32, s36, s40)
+
+@Theorem(3, "pm3.37")
+def R_pm3_37(ph, ps, ch):
+    s15 = R_pm4_14(f"{ph}", f"{ps}", f"{ch}")
+    return R_biimpi(f"→⋀{ph}{ps}{ch}", f"→⋀{ph}¬{ch}¬{ps}", s15)
+
+@Theorem(4, "anim12")
+def R_anim12(ph, ps, ch, th):
+    s13 = R_id(f"→{ph}{ps}")
+    s15 = R_id(f"→{ch}{th}")
+    return R_im2anan9(f"→{ph}{ps}", f"{ph}", f"{ps}", f"→{ch}{th}", f"{ch}", f"{th}", s13, s15)
+
+@Theorem(2, "pm3.4")
+def R_pm3_4(ph, ps):
+    s7 = R_simpr(f"{ph}", f"{ps}")
+    return R_a1d(f"⋀{ph}{ps}", f"{ps}", f"{ph}", s7)
+
+def R_exbiri(ph, ps, ch, th, h1):
+    s10 = R_biimpar(f"⋀{ph}{ps}", f"{ch}", f"{th}", h1)
+    return R_exp31(f"{ph}", f"{ps}", f"{th}", f"{ch}", s10)
+
+def R_pm2_61ian(ph, ps, ch, h1, h2):
+    s8 = R_ex(f"{ph}", f"{ps}", f"{ch}", h1)
+    s14 = R_ex(f"¬{ph}", f"{ps}", f"{ch}", h2)
+    return R_pm2_61i(f"{ph}", f"→{ps}{ch}", s8, s14)
+
+def R_pm2_61dan(ph, ps, ch, h1, h2):
+    s7 = R_ex(f"{ph}", f"{ps}", f"{ch}", h1)
+    s13 = R_ex(f"{ph}", f"¬{ps}", f"{ch}", h2)
+    return R_pm2_61d(f"{ph}", f"{ps}", f"{ch}", s7, s13)
+
+def R_pm2_61ddan(ph, ps, ch, th, h1, h2, h3):
+    s16 = R_adantlr(f"{ph}", f"{ch}", f"{th}", f"¬{ps}", h2)
+    s23 = R_anassrs(f"{ph}", f"¬{ps}", f"¬{ch}", f"{th}", h3)
+    s24 = R_pm2_61dan(f"⋀{ph}¬{ps}", f"{ch}", f"{th}", s16, s23)
+    return R_pm2_61dan(f"{ph}", f"{ps}", f"{th}", h1, s24)
+
+def R_pm2_61dda(ph, ps, ch, th, h1, h2, h3):
+    s13 = R_anassrs(f"{ph}", f"{ps}", f"{ch}", f"{th}", h3)
+    s20 = R_adantlr(f"{ph}", f"¬{ch}", f"{th}", f"{ps}", h2)
+    s21 = R_pm2_61dan(f"⋀{ph}{ps}", f"{ch}", f"{th}", s13, s20)
+    return R_pm2_61dan(f"{ph}", f"{ps}", f"{th}", s21, h1)
+
+def R_mtand(ph, ps, ch, h1, h2):
+    s8 = R_ex(f"{ph}", f"{ps}", f"{ch}", h2)
+    return R_mtod(f"{ph}", f"{ps}", f"{ch}", h1, s8)
+
+def R_pm2_65da(ph, ps, ch, h1, h2):
+    s7 = R_ex(f"{ph}", f"{ps}", f"{ch}", h1)
+    s13 = R_ex(f"{ph}", f"{ps}", f"¬{ch}", h2)
+    return R_pm2_65d(f"{ph}", f"{ps}", f"{ch}", s7, s13)
+
+def R_condan(ph, ps, ch, h1, h2):
+    s8 = R_pm2_65da(f"{ph}", f"¬{ps}", f"{ch}", h1, h2)
+    return R_notnotrd(f"{ph}", f"{ps}", s8)
+
+@Theorem(3, "biadan")
+def R_biadan(ph, ps, ch):
+    s30 = R_pm4_71r(f"{ph}", f"{ps}")
+    s33 = R_bicom(f"{ph}", f"⋀{ps}{ph}")
+    s54 = R_bicom(f"{ph}", f"⋀{ps}{ch}")
+    s58 = R_pm5_32(f"{ps}", f"{ph}", f"{ch}")
+    s59 = R_bibi12i(f"↔{ph}⋀{ps}{ch}", f"↔⋀{ps}{ch}{ph}", f"→{ps}↔{ph}{ch}", f"↔⋀{ps}{ph}⋀{ps}{ch}", s54, s58)
+    s62 = R_bicom(f"→{ps}↔{ph}{ch}", f"↔{ph}⋀{ps}{ch}")
+    s66 = R_biluk(f"⋀{ps}{ph}", f"{ph}", f"⋀{ps}{ch}")
+    s67 = R_3bitr4ri(f"↔↔{ph}⋀{ps}{ch}→{ps}↔{ph}{ch}", f"↔↔⋀{ps}{ch}{ph}↔⋀{ps}{ph}⋀{ps}{ch}", f"↔→{ps}↔{ph}{ch}↔{ph}⋀{ps}{ch}", f"↔⋀{ps}{ph}{ph}", s59, s62, s66)
+    return R_3bitri(f"→{ph}{ps}", f"↔{ph}⋀{ps}{ph}", f"↔⋀{ps}{ph}{ph}", f"↔→{ps}↔{ph}{ch}↔{ph}⋀{ps}{ch}", s30, s33, s67)
+
+def R_biadani(ph, ps, ch, h1):
+    s18 = R_biadan(f"{ph}", f"{ps}", f"{ch}")
+    return R_mpbi(f"→{ph}{ps}", f"↔→{ps}↔{ph}{ch}↔{ph}⋀{ps}{ch}", h1, s18)
+
+def R_biadanii(ph, ps, ch, h1, h2):
+    s15 = R_biadani(f"{ph}", f"{ps}", f"{ch}", h1)
+    return R_mpbi(f"→{ps}↔{ph}{ch}", f"↔{ph}⋀{ps}{ch}", h2, s15)
+
+def R_biadanid(ph, ps, ch, th, h1, h2):
+    s27 = R_biimpa(f"⋀{ph}{ch}", f"{ps}", f"{th}", h2)
+    s28 = R_an32s(f"{ph}", f"{ch}", f"{ps}", f"{th}", s27)
+    s29 = R_mpdan(f"⋀{ph}{ps}", f"{ch}", f"{th}", h1, s28)
+    s30 = R_jca(f"⋀{ph}{ps}", f"{ch}", f"{th}", h1, s29)
+    s39 = R_biimpar(f"⋀{ph}{ch}", f"{ps}", f"{th}", h2)
+    s40 = R_anasss(f"{ph}", f"{ch}", f"{th}", f"{ps}", s39)
+    return R_impbida(f"{ph}", f"{ps}", f"⋀{ch}{th}", s30, s40)
+
+@Theorem(2, "pm5.1")
+def R_pm5_1(ph, ps):
+    s7 = R_pm5_501(f"{ph}", f"{ps}")
+    return R_biimpa(f"{ph}", f"{ps}", f"↔{ph}{ps}", s7)
+
+@Theorem(2, "pm5.21")
+def R_pm5_21(ph, ps):
+    s9 = R_pm5_21im(f"{ph}", f"{ps}")
+    return R_imp(f"¬{ph}", f"¬{ps}", f"↔{ph}{ps}", s9)
+
+@Theorem(3, "pm5.35")
+def R_pm5_35(ph, ps, ch):
+    s14 = R_pm5_1(f"→{ph}{ps}", f"→{ph}{ch}")
+    return R_pm5_74rd(f"⋀→{ph}{ps}→{ph}{ch}", f"{ph}", f"{ps}", f"{ch}", s14)
+
+@Theorem(2, "abai")
+def R_abai(ph, ps):
+    s7 = R_biimt(f"{ph}", f"{ps}")
+    return R_pm5_32i(f"{ph}", f"{ps}", f"→{ph}{ps}", s7)
+
+@Theorem(2, "pm4.45im")
+def R_pm4_45im(ph, ps):
+    s6 = R_ax_1(f"{ph}", f"{ps}")
+    return R_pm4_71i(f"{ph}", f"→{ps}{ph}", s6)
+
+@Theorem(2, "impimprbi")
+def R_impimprbi(ph, ps):
+    s21 = R_dfbi2(f"{ph}", f"{ps}")
+    s24 = R_pm5_1(f"→{ph}{ps}", f"→{ps}{ph}")
+    s25 = R_sylbi(f"↔{ph}{ps}", f"⋀→{ph}{ps}→{ps}{ph}", f"↔→{ph}{ps}→{ps}{ph}", s21, s24)
+    s31 = R_impbi(f"{ph}", f"{ps}")
+    s38 = R_pm2_521(f"{ph}", f"{ps}")
+    s39 = R_pm2_24d(f"¬→{ph}{ps}", f"→{ps}{ph}", f"↔{ph}{ps}", s38)
+    s40 = R_bija(f"→{ph}{ps}", f"→{ps}{ph}", f"↔{ph}{ps}", s31, s39)
+    return R_impbii(f"↔{ph}{ps}", f"↔→{ph}{ps}→{ps}{ph}", s25, s40)
+
+@Theorem(3, "nan")
+def R_nan(ph, ps, ch):
+    s23 = R_impexp(f"{ph}", f"{ps}", f"¬{ch}")
+    s29 = R_imnan(f"{ps}", f"{ch}")
+    s30 = R_imbi2i(f"→{ps}¬{ch}", f"¬⋀{ps}{ch}", f"{ph}", s29)
+    return R_bitr2i(f"→⋀{ph}{ps}¬{ch}", f"→{ph}→{ps}¬{ch}", f"→{ph}¬⋀{ps}{ch}", s23, s30)
+
+@Theorem(3, "pm5.31")
+def R_pm5_31(ph, ps, ch):
+    s11 = R_simpr(f"{ch}", f"→{ph}{ps}")
+    s14 = R_simpl(f"{ch}", f"→{ph}{ps}")
+    return R_jctird(f"⋀{ch}→{ph}{ps}", f"{ph}", f"{ps}", f"{ch}", s11, s14)
+
+@Theorem(3, "pm5.31r")
+def R_pm5_31r(ph, ps, ch):
+    s10 = R_ax_1(f"{ch}", f"{ph}")
+    s12 = R_id(f"→{ph}{ps}")
+    return R_anim12ii(f"{ch}", f"{ph}", f"{ch}", f"→{ph}{ps}", f"{ps}", s10, s12)
+
+@Theorem(3, "pm4.15")
+def R_pm4_15(ph, ps, ch):
+    s19 = R_con2b(f"⋀{ps}{ch}", f"{ph}")
+    s23 = R_nan(f"{ph}", f"{ps}", f"{ch}")
+    return R_bitr2i(f"→⋀{ps}{ch}¬{ph}", f"→{ph}¬⋀{ps}{ch}", f"→⋀{ph}{ps}¬{ch}", s19, s23)
+
+@Theorem(2, "pm5.36")
+def R_pm5_36(ph, ps):
+    s7 = R_id(f"↔{ph}{ps}")
+    return R_pm5_32ri(f"↔{ph}{ps}", f"{ph}", f"{ps}", s7)
+
+@Theorem(2, "annotanannot")
+def R_annotanannot(ph, ps):
+    s16 = R_ibar(f"{ph}", f"{ps}")
+    s17 = R_bicomd(f"{ph}", f"{ps}", f"⋀{ph}{ps}", s16)
+    s18 = R_notbid(f"{ph}", f"⋀{ph}{ps}", f"{ps}", s17)
+    return R_pm5_32i(f"{ph}", f"¬⋀{ph}{ps}", f"¬{ps}", s18)
+
+@Theorem(3, "pm5.33")
+def R_pm5_33(ph, ps, ch):
+    s16 = R_ibar(f"{ph}", f"{ps}")
+    s17 = R_imbi1d(f"{ph}", f"{ps}", f"⋀{ph}{ps}", f"{ch}", s16)
+    return R_pm5_32i(f"{ph}", f"→{ps}{ch}", f"→⋀{ph}{ps}{ch}", s17)
+
+def R_syl12anc(ph, ps, ch, th, ta, h1, h2, h3, h4):
+    s12 = R_jca(f"{ph}", f"{ch}", f"{th}", h2, h3)
+    return R_syl2anc(f"{ph}", f"{ps}", f"⋀{ch}{th}", f"{ta}", h1, s12, h4)
+
+def R_syl21anc(ph, ps, ch, th, ta, h1):
