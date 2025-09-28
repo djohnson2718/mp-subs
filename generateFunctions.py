@@ -64,13 +64,13 @@ def getSteps(codeString):
     return l
     
 
-def makeFunction(nVars, nHyp, refs, codeString, name, writer=print):
+def makeFunction(nVars, nHyp, refs, steps, name, writer=print):
     if nHyp == 0:
         writer(f'@Theorem({nVars}, "{name}")')
     writer("def " + getFunctionName(name) + "(" + ", ".join(wffVarsId[:nVars]) + (", " if nVars > 0 and nHyp > 0 else "") + ", ".join(("h" + str(i) for i in range(1,nHyp+1))) + "):")
     stack = []
     savedSteps = []
-    steps = getSteps(codeString)
+    #steps = getSteps(codeString)
     for i,s in enumerate(steps):
         if s == 'Z':
             savedSteps.append(stack[-1])
@@ -101,100 +101,59 @@ def makeFunction(nVars, nHyp, refs, codeString, name, writer=print):
     writer("")
     aritys[name] = nVars + nHyp
 
-
-
-#makeFunction(3,3,["wi", "ax-mp"],"BCEABCGDFHH", "mp2")
-
-#makeFunction(3,3,["ax-mp"],"BCABDEGFG", "mp2d")
-
 import re
-pattern = re.compile(r"\$\{.*?\$\}|[\w\-\.]+\s\$p.*?\$\.", re.DOTALL)
-namePattern = re.compile(r"([\w\-\.]+)\s\$p\s\|-")
-codeStringPattern = re.compile(r"\$=\s*\((.*?)\)\s*([A-Z\s]+)\s\$\.")
-refsPattern = re.compile(r"\(\s([\sa-z0-9\-\.]+)\s\)")
-
-p = re.compile(r"[\w\-\.]+\s\$e\s\|\-\s(?P<hyp>.*?)\s\$.|(?P<name>[\w\-\.]+)\s\$p\s\|\-\s(?P<provable>.*?)\s\$\=\s+\(\s(?P<refs>.*?)\s\)\s(?P<code>[A-Z\s]+)\s\$\.", re.DOTALL)
-
-
-def countVars(hyps):
-    nVars = 0
-    for v in wffVarsId:
-        for h in hyps:
-            if v in h:
-                nVars += 1
-                break
-    return nVars
 
 with open("set.mm") as f:
     setmm = f.read(350000)
 
-l = re.findall(pattern, setmm)
 excludeNames = set([])
-count = 0
+
+def parse(it, nHypsPrevLevel):
+    nHypsThisLevel = 0
+    while True:
+        try:
+            m = next(it)
+        except StopIteration:
+            return
+        if m.group("startComment") != None:
+            while m.group("endComment") == None:
+                try:
+                    m = next(it)
+                except StopIteration:
+                    return
+        if m.group("start") != None:
+            parse(it, nHypsPrevLevel + nHypsThisLevel)
+        elif m.group("end") != None:
+            return
+        elif m.group("hyp") != None:
+            nHypsThisLevel += 1
+        elif m.group("ax") != None:
+            pass #ignore axioms for now
+        elif m.group("provableName") != None:
+            codeString = m.group("code")
+            refs = [r for r in m.group("refs").split(" ") if r != '']
+            name = m.group("provableName")
+            if name in excludeNames or name.endswith("ALT"):
+                print("### Skipping: " + name)
+                continue
+            nHyp = nHypsPrevLevel + nHypsThisLevel
+            print("#### Name: " + name)
+            print("hyps "  + str(nHypsPrevLevel) + " + " + str(nHypsThisLevel) + " = " + str(nHyp))
+            steps = getSteps(codeString)
+            numStepLabels = max([st for st in steps if isinstance(st, int)]) + 1 - (steps.count('Z'))
+            nVars = numStepLabels - nHyp - len(refs) 
+            print("step labels " + str(numStepLabels))
+            print("vars "  + str(nVars))
+            print(codeString, steps)
+            print(refs)
+            makeFunction(nVars, nHyp, refs, steps, name, writer=lambda line : tl.write(line + "\n"))
+            print("******")
+
+ofInterest = re.compile(r"(?P<startComment>\$\()|(?P<endComment>\$\))|(?P<start>\$\{)|(?P<end>\$\})|(?P<hyp>\$e\s\|\-)|(?P<ax>\$a\s\|\-)|(?P<provableName>[\w\-\.]+)\s\$p\s\|\-.*?\$\=\s+\(\s(?P<refs>[\w\-\.\s]*?)\s\)\s+(?P<code>[A-Z\s]+)\s\$\.", re.DOTALL)
+it = ofInterest.finditer(setmm)
+
 with open("TrueLines.py", "w") as tl:
     tl.write("from header import *\n\n")
-    for s in l:
-        count += 1
-        if count < 8:
-            continue
-        print("s= \n" + s)
-        hyps = []
-        for m in p.finditer(s):
-            if m.group("hyp") != None:
-                hyps.append(m.group("hyp"))
-                continue
-            print (hyps)
-            if m.group("provable") != None:
-                codeString = m.group("code")
-                refs = m.group("refs").split(" ")
-                nHyp = len(hyps)
-                nVars = countVars(hyps + [m.group("provable")])
-                name = m.group("name")
-                if name in excludeNames or name.endswith("ALT"):
-                    print("### Skipping: " + name)
-                    continue
-                print("#### Name: " + name)
-                print("hyps "  + str(nHyp))
-                print("vars "  + str(nVars))
-                print(codeString)
-                print(refs)
-                makeFunction(nVars, nHyp, refs, codeString, name, writer=lambda line : tl.write(line + "\n"))
-                print("******")
-                
-        print()
+    parse(it, 0)
     tl.write(r'c.makePage("html/TrueLines.html")')
 
-
-
-"""
-need to make it work with things like:
-  ${
-    syl12anc.1 $e |- ( ph -> ps ) $.
-    syl12anc.2 $e |- ( ph -> ch ) $.
-    syl12anc.3 $e |- ( ph -> th ) $.
-    ${
-      syl12anc.4 $e |- ( ( ps /\ ( ch /\ th ) ) -> ta ) $.
-      $( Syllogism combined with contraction.  (Contributed by Jeff Hankins,
-         1-Aug-2009.) $)
-      syl12anc $p |- ( ph -> ta ) $=
-        ( wa jca syl2anc ) ABCDJEFACDGHKIL $.
-    $}
-
-    ${
-      syl21anc.4 $e |- ( ( ( ps /\ ch ) /\ th ) -> ta ) $.
-      $( Syllogism combined with contraction.  (Contributed by Jeff Hankins,
-         1-Aug-2009.) $)
-      syl21anc $p |- ( ph -> ta ) $=
-        ( wa jca syl2anc ) ABCJDEABCFGKHIL $.
-    $}
-
-    ${
-      syl22anc.4 $e |- ( ph -> ta ) $.
-      syl22anc.5 $e |- ( ( ( ps /\ ch ) /\ ( th /\ ta ) ) -> et ) $.
-      $( Syllogism combined with contraction.  (Contributed by NM,
-         11-Mar-2012.) $)
-      syl22anc $p |- ( ph -> et ) $=
-        ( wa jca syl12anc ) ABCLDEFABCGHMIJKN $.
-    $}
-  $}
-"""

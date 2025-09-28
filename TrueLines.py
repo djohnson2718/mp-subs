@@ -3737,4 +3737,58 @@ def R_syl12anc(ph, ps, ch, th, ta, h1, h2, h3, h4):
     s12 = R_jca(f"{ph}", f"{ch}", f"{th}", h2, h3)
     return R_syl2anc(f"{ph}", f"{ps}", f"⋀{ch}{th}", f"{ta}", h1, s12, h4)
 
-def R_syl21anc(ph, ps, ch, th, ta, h1):
+def R_syl21anc(ph, ps, ch, th, ta, h1, h2, h3, h4):
+    s11 = R_jca(f"{ph}", f"{ps}", f"{ch}", h1, h2)
+    return R_syl2anc(f"{ph}", f"⋀{ps}{ch}", f"{th}", f"{ta}", s11, h3, h4)
+
+def R_syl22anc(ph, ps, ch, th, ta, et, h1, h2, h3, h4, h5):
+    s12 = R_jca(f"{ph}", f"{ps}", f"{ch}", h1, h2)
+    return R_syl12anc(f"{ph}", f"⋀{ps}{ch}", f"{th}", f"{ta}", f"{et}", s12, h3, h4, h5)
+
+def R_syl1111anc(ph, ps, ch, th, ta, et, h1, h2, h3, h4, h5):
+    s12 = R_jca(f"{ph}", f"{ps}", f"{ch}", h1, h2)
+    return R_syl21anc(f"{ph}", f"⋀{ps}{ch}", f"{th}", f"{ta}", f"{et}", s12, h3, h4, h5)
+
+def R_syldbl2(ph, ps, ch, h1):
+    s9 = R_com12(f"⋀{ph}{ps}", f"{ps}", f"{ch}", h1)
+    return R_anabsi7(f"{ph}", f"{ps}", f"{ch}", s9)
+
+def R_mpsyl4anc(ph, ps, ch, th, ta, et, h1, h2, h3, h4, h5):
+    s9 = R_a1i(f"{ph}", f"{th}", h1)
+    s13 = R_a1i(f"{ps}", f"{th}", h2)
+    s17 = R_a1i(f"{ch}", f"{th}", h3)
+    return R_syl1111anc(f"{th}", f"{ph}", f"{ps}", f"{ch}", f"{ta}", f"{et}", s9, s13, s17, h4, h5)
+
+@Theorem(3, "pm4.87")
+def R_pm4_87(ph, ps, ch):
+    s36 = R_impexp(f"{ph}", f"{ps}", f"{ch}")
+    s40 = R_bi2_04(f"{ph}", f"{ps}", f"{ch}")
+    s41 = R_pm3_2i(f"↔→⋀{ph}{ps}{ch}→{ph}→{ps}{ch}", f"↔→{ph}→{ps}{ch}→{ps}→{ph}{ch}", s36, s40)
+    s47 = R_impexp(f"{ps}", f"{ph}", f"{ch}")
+    s48 = R_bicomi(f"→⋀{ps}{ph}{ch}", f"→{ps}→{ph}{ch}", s47)
+    return R_pm3_2i(f"⋀↔→⋀{ph}{ps}{ch}→{ph}→{ps}{ch}↔→{ph}→{ps}{ch}→{ps}→{ph}{ch}", f"↔→{ps}→{ph}{ch}→⋀{ps}{ph}{ch}", s41, s48)
+
+@Theorem(3, "bimsc1")
+def R_bimsc1(ph, ps, ch):
+    s15 = R_id(f"↔{ch}⋀{ps}{ph}")
+    s21 = R_simpr(f"{ps}", f"{ph}")
+    s24 = R_ancr(f"{ph}", f"{ps}")
+    s25 = R_impbid2(f"→{ph}{ps}", f"⋀{ps}{ph}", f"{ph}", s21, s24)
+    return R_sylan9bbr(f"↔{ch}⋀{ps}{ph}", f"{ch}", f"⋀{ps}{ph}", f"→{ph}{ps}", f"{ph}", s15, s25)
+
+def R_a2and(ph, ps, ch, th, ta, et, h1, h2):
+    s33 = R_expd(f"{ph}", f"{ps}", f"{et}", f"{ch}", h2)
+    s34 = R_imdistand(f"{ph}", f"{ps}", f"{et}", f"{ch}", s33)
+    s42 = R_imim1(f"⋀{ps}{ch}", f"{ta}", f"{th}")
+    s43 = R_com3l(f"→⋀{ps}{ch}{ta}", f"→{ta}{th}", f"⋀{ps}{ch}", f"{th}", s42)
+    s44 = R_syl6c(f"{ph}", f"⋀{ps}{et}", f"→{ta}{th}", f"⋀{ps}{ch}", f"→→⋀{ps}{ch}{ta}{th}", h1, s34, s43)
+    return R_com23(f"{ph}", f"⋀{ps}{et}", f"→⋀{ps}{ch}{ta}", f"{th}", s44)
+
+def R_animpimp2impd(ph, ps, ch, th, ta, et, h1, h2):
+    s33 = R_expr(f"{ps}", f"{ph}", f"{th}", f"→{et}{ta}", h2)
+    s34 = R_a2d(f"⋀{ps}{ph}", f"{th}", f"{et}", f"{ta}", s33)
+    s35 = R_syld(f"⋀{ps}{ph}", f"{ch}", f"→{th}{et}", f"→{th}{ta}", h1, s34)
+    s36 = R_expcom(f"{ps}", f"{ph}", f"→{ch}→{th}{ta}", s35)
+    return R_a2d(f"{ph}", f"{ps}", f"{ch}", f"→{th}{ta}", s36)
+
+c.makePage('html/TrueLines.html')
