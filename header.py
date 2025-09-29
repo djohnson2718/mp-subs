@@ -40,4 +40,8 @@ def R_df_bi(ph, ps):
 
 @Theorem(2, "df-an")
 def R_df_an(ph, ps):
-    return c.axiom(f"↔⋀{ph}{ps}{and_(ph, ps)}")
+    return c.axiom(f"↔∧{ph}{ps}{and_(ph, ps)}")
+
+@Theorem(2, "df-or")
+def R_df_or(ph, ps):
+    return c.axiom(f"↔∨{ph}{ps}→¬{ph}{ps}")

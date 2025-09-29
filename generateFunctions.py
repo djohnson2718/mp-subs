@@ -6,7 +6,7 @@ def popn(stack,n):
 
 wffVarsId = ["ph","ps","ch","th","ta","et","ze","si","rh","mu","la","ka"]
 
-aritys = {"ax-mp":4, "ax-1":2, "ax-2":3, "ax-3":2, "df-bi":2, 'df-an':2}
+aritys = {"ax-mp":4, "ax-1":2, "ax-2":3, "ax-3":2, "df-bi":2, 'df-an':2, 'df-or':2}
 
 class Operator:
     def __init__(self, symbol, mmString, arity):
@@ -21,7 +21,7 @@ ops = {
     "wn" : Operator("¬", "wn", 1),
     "wi" : Operator("→", "wi", 2),
     "wb" : Operator("↔", "wb", 2),
-    "wa" : Operator("⋀", "wa", 2),
+    "wa" : Operator("∧", "wa", 2),
     "wo" : Operator("∨", "wo", 2)
 }
 
@@ -106,7 +106,7 @@ import re
 with open("set.mm") as f:
     setmm = f.read(350000)
 
-excludeNames = set([])
+excludeNames = set(['idi', 'a1ii'])
 
 def parse(it, nHypsPrevLevel):
     nHypsThisLevel = 0
@@ -131,7 +131,7 @@ def parse(it, nHypsPrevLevel):
             pass #ignore axioms for now
         elif m.group("provableName") != None:
             codeString = m.group("code")
-            refs = [r for r in m.group("refs").split(" ") if r != '']
+            refs = [r for r in m.group("refs").split() if r != '']
             name = m.group("provableName")
             if name in excludeNames or name.endswith("ALT"):
                 print("### Skipping: " + name)

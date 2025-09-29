@@ -27,7 +27,7 @@ class StringWithCursor(object):
         return self.string[:self.cursor] + "*" + self.string[self.cursor:]
     
 
-patterns = ['→ww','¬w','↔ww','⋀ww']
+patterns = ['→ww','¬w','↔ww','∧ww','∨ww']
 
 def peelWff(sc:StringWithCursor):
     if sc[0] in wffVars:

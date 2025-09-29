@@ -21,7 +21,7 @@ class Theorem:
         return f"{self.id} ## {self.wff} [{self.proof}] ** {self.names}"
     
     def html(self):
-        namesStr = ", ".join(self.names)
+        namesStr = ", ".join([f'<a href = "https://us.metamath.org/mpeuni/{n}.html" target="_blank">{n}</a>' for n in self.names])
         classes = []
         if len(self.names) > 0:
             classes.append("named")
